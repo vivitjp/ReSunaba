@@ -1,0 +1,19 @@
+{
+  "name": "index",
+  "directory": [
+    "./src/component",
+    "./src/library",
+    "./src/common",
+    "./src/context",
+    "./src/features",
+    "./src/layout",
+    "./src/model",
+    "./src/pages"
+  ],
+  "delete": true,
+  "location": "top",
+  "structure": "flat",
+  "singleQuotes": true,
+  "include": [".ts", ".tsx"],
+  "exclude": [".stories.tsx", ".spec.tsx"]
+}
