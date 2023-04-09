@@ -2,13 +2,13 @@
   "name": "index",
   "directory": [
     "./src/component",
-    "./src/library",
     "./src/common",
     "./src/context",
     "./src/features",
     "./src/layout",
-    "./src/model",
-    "./src/pages"
+    "./src/library",
+    "./src/pages",
+    "./src/types"
   ],
   "delete": true,
   "location": "top",
