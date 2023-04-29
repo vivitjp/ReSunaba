@@ -18,7 +18,7 @@ import {
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Section data-testid="layout">
-      <Header>Sunabar React & SVG</Header>
+      <Header>ReSunabar React</Header>
       <Body data-testid="body">
         <MenuNav data-testid="menu">
           {Object.entries(menuGroup).map((group) => (

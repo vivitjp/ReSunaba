@@ -4,4 +4,3 @@
 
 export * from './styleDiv';
 export * from './styleInput';
-export * from './SVGContent';

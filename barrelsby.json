@@ -4,6 +4,7 @@
     "./src/component",
     "./src/common",
     "./src/context",
+    "./src/featureCommon",
     "./src/features",
     "./src/layout",
     "./src/library",

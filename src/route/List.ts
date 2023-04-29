@@ -1,5 +1,11 @@
-import { Home } from "~/Home"
-import { PageBasic } from "~/pages"
+import { Home } from "~/pages/Home"
+import {
+  PageAnimationSlide,
+  PageCustomHooks,
+  PageIntersectionObserver,
+  PageIntersectionObserverHide,
+} from "~/pages"
+import { PageRenderHooks } from "~/pages/React/PageRenderHooks"
 
 type MenuGroup = { [key: string]: Menu[] }
 
@@ -15,8 +21,35 @@ export type Menu = {
 export const menuGroup: MenuGroup = {
   Home: [{ name: "Home", path: "/", element: Home }],
 
-  PlayGround: [
-    //{ name: "Playground", path: "/playground", element: PagePlayground },
+  CSS: [
+    {
+      name: "スライドMenu",
+      path: "/animation-slide-menu",
+      element: PageAnimationSlide,
+    },
   ],
-  Basic: [{ name: "基礎", path: "/basic", element: PageBasic }],
+  React: [
+    {
+      name: "CustomHooks",
+      path: "/customHooks",
+      element: PageCustomHooks,
+    },
+    {
+      name: "RenderHooks",
+      path: "/renderHooks",
+      element: PageRenderHooks,
+    },
+  ],
+  WebAPI: [
+    {
+      name: "Inter Observer",
+      path: "/iObserver",
+      element: PageIntersectionObserver,
+    },
+    {
+      name: "Inter Observer Hide",
+      path: "/iObserver-hide",
+      element: PageIntersectionObserverHide,
+    },
+  ],
 }

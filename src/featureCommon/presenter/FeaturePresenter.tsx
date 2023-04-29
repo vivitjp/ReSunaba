@@ -1,32 +1,24 @@
 import styled from "styled-components"
-import {
-  Base,
-  Column,
-  Div,
-  DivFlexBottom,
-  Row,
-  Span,
-  Title,
-} from "../../common/styleDiv"
+import { Column, Div, Row, Span, Title } from "../../common/styleDiv"
 import { OptionsType } from "../../library/hooks/type"
 import {
   CodeKeyType,
   syntaxHighlight,
 } from "../../library/syntaxHighlighter/syntaxHighlighter"
 import { FC } from "react"
-import { UseReturnType } from "~/types/useHooks"
+import { UseReturnType } from "~/component"
 
 type UseCode = {
   useCode: () => UseReturnType
 }
 
 export const FeaturePresenter: FC<UseCode> = ({ useCode }) => {
-  const { code, codeKeyType, title, subTitle, options, jsx, height, Visible } =
+  const { code, codeKeyType, title, subTitle, options, jsx, height, visible } =
     useCode()
-  const [isVisible, setIsVisible] = Visible ?? [null, () => {}]
+  const [isVisible, setIsVisible] = visible ?? [null, () => {}]
 
   return (
-    <Column gap={16}>
+    <Column gap={"24px"} width="100%" padding="0 10px">
       {/* タイトル */}
       {title && <MainTitle>{title}</MainTitle>}
 
@@ -34,8 +26,8 @@ export const FeaturePresenter: FC<UseCode> = ({ useCode }) => {
       {subTitle && <SubTitle>{subTitle}</SubTitle>}
 
       {/* 操作オプション */}
-      {options && (
-        <Column gap={0} paddingLeft={20}>
+      {!!options?.length && (
+        <Column gap={"0"} paddingLeft={"20px"}>
           {options.map((option, id) => (
             <Option key={id} option={option} />
           ))}
@@ -43,7 +35,7 @@ export const FeaturePresenter: FC<UseCode> = ({ useCode }) => {
       )}
 
       {/* 表示ボタン */}
-      {Visible && (
+      {visible && (
         <Input
           onClick={() => {
             setIsVisible((prev) => !prev)
@@ -53,18 +45,15 @@ export const FeaturePresenter: FC<UseCode> = ({ useCode }) => {
       )}
 
       {/* JSX */}
-      <DivFlexBottom
-        border={"#ccc"}
-        width={720}
-        height={height}
-        marginLeft={10}
-      >
-        {jsx}
-      </DivFlexBottom>
+      {jsx && (
+        <Div width="100%" height={height} shadow="10px" padding="10px">
+          {jsx}
+        </Div>
+      )}
 
       {/* コード */}
       {code && (
-        <Row padding={10} width={"100%"}>
+        <Row width="100%" border="1px solid #ddd">
           <CodeBox code={code} codeKeyType={codeKeyType} />
         </Row>
       )}
@@ -78,24 +67,28 @@ const Option = ({
   option: OptionsType<any>
 }) => (
   <Column padding={0} gap={0}>
-    <Row padding={3}>
+    <Row padding={"3px"}>
       {/* Title */}
       <TitleWrapper>
         {title && (
-          <Title width={250} color={"#666"}>
+          <Title width={"250px"} color={"#666"}>
             {title}
           </Title>
         )}
         {!title && <div />}
         {subTitle && (
-          <OptionSubTitle fontSize={16} fontFamily={"monospace"} color="#666">
+          <OptionSubTitle
+            fontSize={"16px"}
+            fontFamily={"monospace"}
+            color="#666"
+          >
             {subTitle}
           </OptionSubTitle>
         )}
       </TitleWrapper>
 
       {/* JSX */}
-      <Div width={250}>{JSX}</Div>
+      <Div width={"250px"}>{JSX}</Div>
     </Row>
 
     {/* ExtraNote */}
@@ -129,14 +122,13 @@ const MainTitle = styled.div`
   }
 `
 const SubTitle = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   color: #666;
   padding: 0 30px;
   width: 100%;
-  white-space: pre;
 `
 
-const OptionSubTitle = styled(Base)`
+const OptionSubTitle = styled(Div)`
   :after {
     content: ":";
     margin: 0 3px;
@@ -152,7 +144,7 @@ type CodeBox = { code: string; codeKeyType?: CodeKeyType }
 const CodeBox: FC<CodeBox> = ({ code, codeKeyType }) => {
   const result = syntaxHighlight({ code, codeKeyType })
   return (
-    <Column gap={2} shadow={10} padding={10}>
+    <Column gap={"2px"} padding={"16px"} width={"100%"} data-testid={"CodeBox"}>
       {result}
     </Column>
   )

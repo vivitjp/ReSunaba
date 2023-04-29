@@ -1,137 +1,203 @@
-import styled, { CSSProperties } from "styled-components"
+import styled, { CSSProperties, css } from "styled-components"
 
-export const Base = styled.div<CSSProperties & { shadow?: number }>`
-  width: ${({ width = "auto" }) =>
-    `${typeof width === "number" ? `${width}px` : `${width}`}`};
-  height: ${({ height = "auto" }) =>
-    `${typeof height === "number" ? `${height}px` : `${height}`}`};
+type AttrPosition = "position" | "top" | "bottom" | "right" | "left"
+type AttrFlex =
+  | "display"
+  | "flexDirection"
+  | "justifyContent"
+  | "alignItems"
+  | "gap"
+type AttrSize = "width" | "height"
+type AttrPadding =
+  | "padding"
+  | "paddingLeft"
+  | "paddingRight"
+  | "paddingBottom"
+  | "paddingTop"
+type AttrMargin =
+  | "margin"
+  | "marginLeft"
+  | "marginRight"
+  | "marginBottom"
+  | "marginTop"
+type AttrShadow = "boxShadow"
+type AttrBorder =
+  | "border"
+  | "borderLeft"
+  | "borderRight"
+  | "borderBottom"
+  | "borderTop"
+  | "borderRadius"
+type AttrColor = "color" | "backgroundColor"
+type AttrFontText = "fontSize" | "fontFamily"
+type AttrFlow = "overflow"
 
-  padding: ${({ padding = "auto" }) =>
-    `${typeof padding === "number" ? `${padding}px` : `${padding}`}`};
+type Custom = {
+  shadow?: string //boxShadowの色
+  borderByColor?: string //border Color から border全体定義
+  borderGray?: boolean //border set 1px solid #aaa
+  bgc?: string //background color
+  p?: number //padding size
+  m?: number //margin size
+}
 
-  padding-left: ${({ paddingLeft = "auto" }) =>
-    `${
-      typeof paddingLeft === "number" ? `${paddingLeft}px` : `${paddingLeft}`
-    }`};
+type Slide = {
+  closedWidth: string //閉まったsize
+  openedWidth: string //開いたsize
+  duration?: string //持続時間
+  delay?: string //遅延時間
+  easing?: //easing関数
+  | "ease"
+    | "ease-in-out"
+    | "ease-in"
+    | "ease-out"
+    | "linear"
+    | "step-start"
+    | "step-end"
+    | string
+} & Pick<CSSProperties, AttrPosition>
 
-  padding-right: ${({ paddingRight = "auto" }) =>
-    `${
-      typeof paddingRight === "number" ? `${paddingRight}px` : `${paddingRight}`
-    }`};
-  padding-top: ${({ paddingTop = "auto" }) =>
-    `${typeof paddingTop === "number" ? `${paddingTop}px` : `${paddingTop}`}`};
-  padding-bottom: ${({ paddingBottom = "auto" }) =>
-    `${
-      typeof paddingBottom === "number"
-        ? `${paddingBottom}px`
-        : `${paddingBottom}`
-    }`};
+type Div = Pick<
+  CSSProperties,
+  | AttrPosition
+  | AttrFlex
+  | AttrSize
+  | AttrPadding
+  | AttrMargin
+  | AttrBorder
+  | AttrShadow
+  | AttrColor
+  | AttrFontText
+  | AttrFlow
+> &
+  Custom
 
-  margin: ${({ margin = 0 }) =>
-    `${typeof margin === "number" ? `${margin}px` : `${margin}`}`};
-  margin-top: ${({ marginTop = 0 }) =>
-    `${typeof marginTop === "number" ? `${marginTop}px` : `${marginTop}`}`};
-  margin-bottom: ${({ marginBottom = 0 }) =>
-    `${
-      typeof marginBottom === "number" ? `${marginBottom}px` : `${marginBottom}`
-    }`};
-  margin-left: ${({ marginLeft = 0 }) =>
-    `${typeof marginLeft === "number" ? `${marginLeft}px` : `${marginLeft}`}`};
-  margin-right: ${({ marginRight = 0 }) =>
-    `${
-      typeof marginRight === "number" ? `${marginRight}px` : `${marginRight}`
-    }`};
+export const Div = styled.div<Div>`
+  ${(props) => css`
+    //position
+    ${props.position && `position: ${props.position}`};
+    ${props.top && `top: ${props.top}`};
+    ${props.right && `right: ${props.right}`};
+    ${props.bottom && `bottom: ${props.bottom}`};
+    ${props.left && `left: ${props.left}`};
+    //flex
+    ${props.display && `display: ${props.display}`};
+    ${props.flexDirection && `flex-direction: ${props.flexDirection}`};
+    ${props.justifyContent && `justify-content: ${props.justifyContent}`};
+    ${props.alignItems && `align-items: ${props.alignItems}`};
+    ${props.gap && `gap: ${props.gap}`};
+    //size
+    ${props.width && `width: ${props.width}`};
+    ${props.height && `height: ${props.height}`};
+    //padding
+    ${props.padding && `padding: ${props.padding}`};
+    ${props.paddingTop && `padding-top: ${props.paddingTop}`};
+    ${props.paddingBottom && `padding-bottom: ${props.paddingBottom}`};
+    ${props.paddingLeft && `padding-left: ${props.paddingLeft}`};
+    ${props.paddingRight && `padding-right: ${props.paddingRight}`};
+    //margin
+    ${props.margin && `margin: ${props.margin}`};
+    ${props.marginTop && `margin-top: ${props.marginTop}`};
+    ${props.marginBottom && `margin-bottom: ${props.marginBottom}`};
+    ${props.marginLeft && `margin-left: ${props.marginLeft}`};
+    ${props.marginRight && `margin-right: ${props.marginRight}`};
+    //shadow
+    ${props.boxShadow && `box-shadow: ${props.boxShadow}`};
+    //border
+    ${props.border && `border: ${props.border}`};
+    ${props.borderTop && `border-top: ${props.borderTop}`};
+    ${props.borderBottom && `border-bottom: ${props.borderBottom}`};
+    ${props.borderLeft && `border-left: ${props.borderLeft}`};
+    ${props.borderRight && `border-right: ${props.borderRight}`};
+    ${props.borderRadius && `border-radius: ${props.borderRadius}`};
+    //overflow
+    ${props.overflow && `overflow: ${props.overflow}`};
+    //font
+    font-size: ${props.fontSize ?? "inherit"};
+    font-family: ${props.fontFamily ?? "inherit"};
+    //color
+    color: ${props.color ?? "inherit"};
+    ${props.backgroundColor && `background-color: ${props.backgroundColor}`};
 
-  font-size: ${({ fontSize = "inherit" }) =>
-    `${typeof fontSize === "number" ? `${fontSize}px` : `${fontSize}`}`};
-  text-align: ${({ textAlign = "inherit" }) => `${textAlign}`};
-
-  box-shadow: ${({ shadow }) =>
-    `${shadow ? `2px 2px ${shadow}px #ccc;` : "none"}`};
-
-  border: ${({ border }) => `1px solid ${border ? `${border}` : "none"}`};
-
-  overflow: hidden;
+    //Custom(他の属性を上書き)
+    ${props.shadow && `box-shadow: 2px 2px ${props.shadow} #ddd`}; //Overwrite
+    ${props.borderByColor && `border: 1px solid ${props.borderByColor}`};
+    ${props.borderGray && `border: 1px solid #aaa`};
+    ${props.p && `padding: ${props.p}px`};
+    ${props.m && `margin: ${props.m}px`};
+    ${props.bgc && `background-color: ${props.bgc}`};
+  `}
 `
 
-export const Div = styled(Base)``
+//以下使用不可
+//${Object.entries(props).map(([key, value]) => key && `${key}:${value}`)}
 
-export const DivFlexBottom = styled(Base)`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
+export const Column = styled(Div)`
+  ${(props) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: ${props.justifyContent ?? "flex-start"};
+    align-items: ${props.alignItems ?? "flex-start"};
+  `}
 `
 
-export const Section = styled(Base)`
-  display: flex;
-  width: ${({ width = "750px" }) =>
-    `${typeof width === "number" ? `${width}px` : `${width}`}`};
-
-  flex-direction: ${({ flexDirection = "column" }) => `${flexDirection}`};
-  gap: ${({ gap = 10 }) => `${gap}px`};
-  overflow: ${({ overflow = "auto" }) => `${overflow}`};
+export const Row = styled(Div)`
+  ${(props) => css`
+    display: flex;
+    flex-direction: row;
+    justify-content: ${props.justifyContent ?? "flex-start"};
+    align-items: ${props.alignItems ?? "flex-start"};
+  `}
 `
 
-export const Column = styled(Base)`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: ${({ gap = 10 }) => `${gap}px`};
-  width: ${({ width }) => `${width ? `${width}px` : "100%"}`};
-  border-radius: ${({ borderRadius = 0 }) => `${borderRadius}px`};
+export const SlideWidth = styled(Div)<Slide>`
+  ${(props) => css`
+    position: ${props.position ?? "fixed"};
+    ${props.top && `top: ${props.top}`};
+    ${props.right && `right: ${props.right}`};
+    ${props.bottom && `bottom: ${props.bottom}`};
+    ${props.left && `left: ${props.left}`};
+    display: flex;
+    flex-direction: column;
+    width: ${props.closedWidth};
+    transition: width ${props.duration ?? "0.5s"}
+      ${props.easing ?? "ease-in-out"} ${props.delay ?? "250ms"};
+    &:hover {
+      width: ${props.openedWidth};
+    }
+    box-shadow: 2px 2px 10px #0004;
+    overflow: hidden;
+  `}
 `
 
-export const Row = styled(Base)`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  gap: ${({ gap = 10 }) => `${gap}px`};
+export const Title = styled.div<Div>`
+  ${(props) => css`
+    :before {
+      content: "■";
+      margin-right: 5px;
+      color: ${props.color ?? "var(--main-color)"};
+    }
+  `}
 `
 
-export const DivShadow = styled(Base)`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  box-shadow: 2px 2px 10px #ccc;
-  font-size: ${({ fontSize }) => `${fontSize ? `${fontSize}px` : "inherit"}`};
+export const DivPre = styled.div<Div>`
+  ${(props) => css`
+    font-size: ${props.fontSize ?? "16px"};
+    font-family: monospace;
+    overflow: auto;
+    white-space: pre;
+  `}
 `
 
-export const DivPre = styled.div<CSSProperties>`
-  width: ${({ width }) => `${width ? `${width}px` : "100%"}`};
-  border: ${({ border }) => `1px solid ${border ? `${border}` : "none"}`};
-  padding: ${({ padding = 5 }) => `${padding}px`};
-  margin: 0;
-  font-family: monospace;
-  overflow: auto;
-  font-size: ${({ fontSize }) => `${fontSize ? `${fontSize}px` : "inherit"}`};
-`
-
-export const Code = styled.pre<CSSProperties & { align?: string }>`
-  text-align: ${({ align = "left" }) => `${align}`};
-  width: ${({ width }) => `${width ? `${width}px` : "100%"}`};
-  min-height: ${({ minHeight }) => `${minHeight ? `${minHeight}px` : "auto"}`};
-  padding: ${({ padding = 5 }) => `${padding}px`};
-  margin: 0;
-  font-size: ${({ fontSize }) => `${fontSize ? `${fontSize}px` : "inherit"}`};
-  font-family: monospace;
-  overflow: auto;
-`
-
-export const Span = styled.span<CSSProperties>`
+export const Span = styled.span<Div>`
   margin: 0;
   padding: 0;
-  color: ${({ color = "inherit" }) => color};
-  font-size: ${({ fontSize = "inherit" }) => fontSize};
 `
 
-export const SpanRed = styled.span<CSSProperties>`
+export const SpanRed = styled.span<Div>`
   margin: 0;
   padding: 0;
   color: var(--main-color);
-  font-size: ${({ fontSize = "inherit" }) => fontSize};
-  font-family: ${({ fontFamily = "monospace" }) => fontFamily};
 `
 
 const NumberRange = ({
@@ -159,24 +225,16 @@ const NumberRange = ({
   )
 }
 
-export const Range = styled(NumberRange)<CSSProperties>`
-  width: ${({ width = 200 }) => `${width ? `${width}px` : "100%"}`};
-  height: 36px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  text-align: center;
-  color: var(--main-color);
-`
-
-export const Title = styled.div<{ width?: number }>`
-  width: ${({ width }) => `${width ? `${width}px` : "100%"}`};
-  font-size: 16px;
-  color: ${({ color }) => `${color ?? `var(--main-color)`}`};
-  :before {
-    content: "■";
-    margin-right: 5px;
-    color: ${({ color }) => `${color ?? `var(--main-color)`}`};
-  }
+export const Range = styled(NumberRange)<Div>`
+  ${(props) => css`
+    width: ${props.width ?? "200px"};
+    font-size: ${props.width ?? "200px"};
+    height: 36px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--main-color);
+  `}
 `

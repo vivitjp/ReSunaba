@@ -11,8 +11,17 @@ export const keysJSTS: KeyDef[] = [
     keys: ["number", "string", "boolean", "SVGElement"],
   },
   {
-    color: "DodgerBlue",
+    color: "ForestGreen",
     keys: ["const"],
+  },
+  // ■ HTML TAG
+  {
+    color: "DodgerBlue",
+    keys: ["input"],
+  },
+  {
+    color: "LightSeaGreen",
+    keys: ["value"],
   },
   {
     color: "darkOrange",
@@ -30,11 +39,7 @@ export const keysJSTS: KeyDef[] = [
     keys: ["currentTarget", "clientX", "clientY", "pointerId"],
   },
   {
-    color: "#555",
-    keys: ["false", "true"],
-  },
-  {
-    color: "MediumOrchid",
+    color: "Sienna",
     keys: [
       "getBoundingClientRect",
       "setPointerCapture",
@@ -46,6 +51,13 @@ export const keysJSTS: KeyDef[] = [
       "height",
       "width",
       "opacity",
+      "position",
+      "transition",
+      "hover",
     ],
+  },
+  {
+    color: "#555",
+    keys: ["false", "true", "fixed"],
   },
 ]
