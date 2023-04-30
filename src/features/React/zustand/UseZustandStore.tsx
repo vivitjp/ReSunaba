@@ -15,6 +15,8 @@ const code = `export interface CountState {
   name: string
   countUp: () => void
   setName: (name: string) => void
+  address: string
+  setAddress: (address: string) => void
 }
 
 export const useCount = create<CountState>()((set) => ({
@@ -22,5 +24,7 @@ export const useCount = create<CountState>()((set) => ({
   countUp: () => set((state) => ({ count: state.count + 1 })),
   name: "",
   setName: (name) => set((state) => ({ name })),
+  address: "",
+  setAddress: (address) => set((state) => ({ address })),
 }))
 `
