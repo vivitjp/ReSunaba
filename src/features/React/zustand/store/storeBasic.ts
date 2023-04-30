@@ -18,11 +18,6 @@ export const useCount = create<CountState>()((set) => ({
   setAddress: (address) => set((state) => ({ address })),
 }))
 
-// const count = useCount((state) => state.count)
-// const countUp = useCount((state) => state.countUp)
-// const name = useCount((state) => state.name)
-// const setName = useCount((state) => state.setName)
-
 export const useCount2 = create<CountState>()((set) => ({
   count: 0,
   countUp: () => set((state) => ({ count: state.count + 1 })),

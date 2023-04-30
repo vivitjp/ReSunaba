@@ -6,6 +6,7 @@ import {
   PageIntersectionObserverHide,
   PageReactMemo,
   PageZustand,
+  PageZustandStore,
 } from "~/pages"
 import { PageRenderHooks } from "~/pages/React/PageRenderHooks"
 
@@ -45,6 +46,11 @@ export const menuGroup: MenuGroup = {
       name: "RenderHooks",
       path: "/renderHooks",
       element: PageRenderHooks,
+    },
+    {
+      name: "zustand Store",
+      path: "/zustandStore",
+      element: PageZustandStore,
     },
     {
       name: "zustand",

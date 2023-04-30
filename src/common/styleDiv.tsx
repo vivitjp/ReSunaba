@@ -31,6 +31,7 @@ type AttrBorder =
 type AttrColor = "color" | "backgroundColor"
 type AttrFontText = "fontSize" | "fontFamily" | "lineHeight" | "verticalAlign"
 type AttrFlow = "overflow"
+type AttrMouseEvent = "cursor"
 
 type Custom = {
   shadow?: string //boxShadowの色
@@ -69,6 +70,7 @@ type Div = Pick<
   | AttrColor
   | AttrFontText
   | AttrFlow
+  | AttrMouseEvent
 > &
   Custom
 
@@ -130,6 +132,7 @@ export const Div = styled.div<Div>`
     ${props.p && `padding: ${props.p}px`};
     ${props.m && `margin: ${props.m}px`};
     ${props.bgc && `background-color: ${props.bgc}`};
+    ${props.cursor && `cursor: ${props.cursor}`};
   `}
 `
 

@@ -63,15 +63,15 @@ export const FeaturePresenter: FC<UseCode> = ({ useCode }) => {
       {/* コード  ------------ codeFold ----------*/}
       {code && (
         <>
-          <details
+          <Details
             open={!codeFold}
             style={{ cursor: "pointer", width: "100%" }}
           >
-            <summary>code</summary>
+            <Summary>Code</Summary>
             <Row padding={10} width={"100%"} border={"#ddd"}>
               <CodeBox code={code} codeKeyType={codeKeyType} />
             </Row>
-          </details>
+          </Details>
         </>
       )}
     </Column>
@@ -153,6 +153,21 @@ const OptionSubTitle = styled(Div)`
   }
 `
 
+const Details = styled.details`
+  width: 100%;
+  cursor: text;
+`
+
+const Summary = styled.summary`
+  font-size: 14px;
+  color: #666;
+  padding: 0;
+  width: 100%;
+  text-align: right;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+`
+
 //----------------------------------------
 // コード
 //----------------------------------------
@@ -161,7 +176,7 @@ type CodeBox = { code: string; codeKeyType?: CodeKeyType }
 const CodeBox: FC<CodeBox> = ({ code, codeKeyType }) => {
   const result = syntaxHighlight({ code, codeKeyType })
   return (
-    <Column gap={"2px"} padding={"16px"} width={"100%"} data-testid={"CodeBox"}>
+    <Column gap={"2px"} padding={"16px"} width={"100%"} cursor="text">
       {result}
     </Column>
   )
