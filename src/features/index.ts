@@ -14,6 +14,8 @@ export * from './React/renderHooks/useRenderHooks1AllInOne';
 export * from './React/renderHooks/useRenderHooks2Cascaded';
 export * from './React/renderHooks/components/UseInput';
 export * from './React/renderHooks/components/UseInputGeneric';
+export * from './React/zustand/UseZustandCascaded';
+export * from './React/zustand/UseZustandOneCompo';
 export * from './React/zustand/UseZustandStore';
 export * from './React/zustand/UseZustandStoreSlice';
 export * from './React/zustand/store/storeBasic';

@@ -1,26 +1,20 @@
-import styled, { CSSProperties } from "styled-components"
+import styled, { CSSProperties, css } from "styled-components"
 
-export const Input = styled.input<CSSProperties>`
-  padding: 0.2rem;
-  width: 100px;
-  height: 40px;
-  color: grey;
-  background-color: white;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  text-align: center;
+const Base = styled.input<CSSProperties>`
+  ${(props) => css`
+    padding: 0.2rem;
+    width: ${props.width ?? "100px"};
+    height: ${props.height ?? "40px"};
+    color: grey;
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    text-align: center;
+  `}
 `
 
-export const Number = styled.input.attrs<CSSProperties>({ type: "number" })`
-  padding: 0.2rem;
-  width: 100px;
-  height: 40px;
-  color: grey;
-  background-color: white;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  text-align: center;
-`
+export const Input = styled(Base)``
+export const Number = styled(Base).attrs<CSSProperties>({ type: "number" })``
 
 export const TextArea = styled.textarea<CSSProperties>`
   width: 500px;

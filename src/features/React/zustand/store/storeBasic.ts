@@ -3,18 +3,34 @@ import { StateCreator, create } from "zustand"
 export interface CountState {
   count: number
   countUp: () => void
-  resetCount: (init: number) => void
+  name: string
+  setName: (name: string) => void
+  address: string
+  setAddress: (address: string) => void
 }
 
 export const useCount = create<CountState>()((set) => ({
-  count: 1,
+  count: 0,
   countUp: () => set((state) => ({ count: state.count + 1 })),
-  resetCount: (init = 1) => set(() => ({ count: init })),
+  name: "",
+  setName: (name) => set((state) => ({ name })),
+  address: "",
+  setAddress: (address) => set((state) => ({ address })),
 }))
 
 // const count = useCount((state) => state.count)
-// const addCount = useCount((state) => state.addCount)
-// const resetCount = useCount((state) => state.resetCount)
+// const countUp = useCount((state) => state.countUp)
+// const name = useCount((state) => state.name)
+// const setName = useCount((state) => state.setName)
+
+export const useCount2 = create<CountState>()((set) => ({
+  count: 0,
+  countUp: () => set((state) => ({ count: state.count + 1 })),
+  name: "",
+  setName: (name) => set((state) => ({ name })),
+  address: "",
+  setAddress: (address) => set((state) => ({ address })),
+}))
 
 //-----------------------------------------
 // Slice Pattern (費用対効果低し)

@@ -12,12 +12,15 @@ export function UseZustandStore(): UseReturnType {
 
 const code = `export interface CountState {
   count: number
+  name: string
   countUp: () => void
-  resetCount: (init: number) => void
+  setName: (name: string) => void
 }
 
 export const useCount = create<CountState>()((set) => ({
-  count: 1,
+  count: 0,
   countUp: () => set((state) => ({ count: state.count + 1 })),
-  resetCount: (init = 1) => set(() => ({ count: init })),
-}))`
+  name: "",
+  setName: (name) => set((state) => ({ name })),
+}))
+`

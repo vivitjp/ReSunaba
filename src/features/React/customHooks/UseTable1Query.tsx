@@ -53,9 +53,7 @@ const TableFromQuery = () => {
         <Button onClick={handleCount}>カウント</Button>
         <Div fontSize="24px">{count}</Div>
       </Row>
-      <Suspense fallback={<p>Loading...</p>}>
-        <Table data={data} />
-      </Suspense>
+      <Table data={data} />
     </Row>
   )
 }
