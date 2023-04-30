@@ -1,11 +1,11 @@
 import { Column } from "~/common"
 import { UseReturnType } from "~/component"
 import { FeaturePresenter } from "~/featureCommon"
-import { UseTable1Query, UseTable2QueryLazy } from "~/features"
+import { UseZustandStore, UseZustandStoreSlice } from "~/features"
 
-const codes: (() => UseReturnType)[] = [UseTable1Query, UseTable2QueryLazy]
+const codes: (() => UseReturnType)[] = [UseZustandStore, UseZustandStoreSlice]
 
-export const PageCustomHooks = () => {
+export const PageZustandStore = () => {
   return (
     <Column padding={"6px"} gap={"40px"}>
       {!!codes.length &&

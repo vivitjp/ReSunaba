@@ -15,9 +15,10 @@ export function useRenderHooksUseInput(): UseReturnType {
 
 const code = `export const useInput = () => {
   const [inputValue, setInputValue] = useState("")
-  const handleChange = () => {} 省略
+  const handleChange = () => {}
+ 
   const RenderInput = (
-    <input type="text" onChange={handleChange} value={inputValue} />
+    <input onChange={handleChange} value={inputValue} />
   )
   return { RenderInput, inputValue }
 }`

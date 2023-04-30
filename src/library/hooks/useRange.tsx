@@ -41,7 +41,7 @@ export const useRange = ({
           range={range}
           step={step}
         />
-        <Div width={50} fontSize={18} textAlign="center">
+        <Div width={50} fontSize={18} justifyContent="center">
           {value}
         </Div>
       </Row>

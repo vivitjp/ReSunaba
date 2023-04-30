@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { Column } from "~/common"
+import { Column, Div, Row } from "~/common"
 import { UseReturnType } from "~/component"
 import { CodeKeyType } from "~/library"
 import { Container } from "./Container"
@@ -9,7 +9,48 @@ export function useIntersectionObserverFeature(): UseReturnType {
   const title = `Intersection Observer`
   const subTitle = ""
 
-  const code = ``
+  const code = `const IntersectionContainer: FC<Props> = ({
+  index,
+  onIntersectCallback, //(index: number) => void
+  threshold = 0.5,     //ターゲットのリアクショントリガー％
+  children,
+}) => {
+  const ref = useRef<HTMLDivElement>(null!)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {  //第1引数: コールバック関数(配列に分割代入が便利)
+        if (entry.isIntersecting && onIntersectCallback)
+          onIntersectCallback(index)
+      },
+      { threshold }   //第2引数: トリガー閾値
+    )
+
+    if (ref.current === null) return
+    observer.observe(ref.current)   //Observe開始
+    return ()=>{ if(ref.current) observer.unobserve(ref.current) } //Observe解除
+  }, [])
+
+  return <Section ref={ref}>{children}</Section>
+}
+ 
+const Component =()=>{
+  const ref = useRef<HTMLDivElement>(null)
+  const [progress, setProgress] = useState(0)
+  const intersectCallback = (index: number) => { setProgress(index) }
+
+  return (
+    <Section>
+      {items.map((i) => (
+        <IntersectionContainer key={i} index={i} onIntersectCallback={intersectCallback}>
+          <Column ref={ref}>
+            {[...Array(10)].map((_, k) => ( <Div>{k + 1}</Div> ))}
+          </Column>
+        </Container>
+      ))}
+    </Section>
+  )
+}`
 
   const ref = useRef<HTMLDivElement>(null)
   const [progress, setProgress] = useState(0)
@@ -20,15 +61,34 @@ export function useIntersectionObserverFeature(): UseReturnType {
 
   const jsx = (
     <Column width="100%" borderGray>
-      <h1>{progress} まで読んだ</h1>
+      <Row
+        fontSize="24px"
+        justifyContent="center"
+        alignItems="center"
+        width="100%"
+      >
+        <Div
+          height="30px"
+          color="red"
+          justifyContent="center"
+          alignItems="center"
+        >
+          {progress}
+        </Div>
+        <Div height="30px" justifyContent="center" alignItems="center">
+          セクションまで移動
+        </Div>
+      </Row>
       <Section>
         {items.map((i) => (
-          <Container key={i} index={i} onIntersect={intersectCallback}>
-            <div ref={ref} data-testid={`Trigger-${i}`}>
+          <Container key={i} index={i} onIntersectCallback={intersectCallback}>
+            <Column ref={ref}>
               {[...Array(10)].fill("").map((_, k) => (
-                <div key={k}>{k}</div>
+                <Div key={k} fontSize="18px" padding="2px">
+                  {k + 1}
+                </Div>
               ))}
-            </div>
+            </Column>
           </Container>
         ))}
       </Section>

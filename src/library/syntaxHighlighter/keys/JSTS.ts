@@ -1,10 +1,40 @@
 import { KeyDef } from "~/library/syntaxHighlighter/syntaxHighlighter"
 
 export const keysJSTS: KeyDef[] = [
-  { color: "IndianRed", keys: ["React", "export", "return"] },
   {
-    color: "DarkViolet",
-    keys: ["useState"],
+    color: "IndianRed",
+    keys: [
+      "React",
+      "export",
+      "return",
+      "children",
+      "styled",
+      "interface",
+      "type",
+    ],
+  },
+  {
+    color: "LightSeaGreen",
+    keys: [
+      "useState",
+      "useEffect",
+      "useRef",
+      "memo",
+      "IntersectionObserver",
+      "zustand",
+    ],
+  },
+  {
+    color: "Goldenrod",
+    keys: [
+      "isIntersecting",
+      "unobserve",
+      "observe",
+      "StateCreator",
+      "set",
+      "get",
+      "create",
+    ],
   },
   {
     color: "RoyalBlue",
@@ -12,23 +42,26 @@ export const keysJSTS: KeyDef[] = [
   },
   {
     color: "ForestGreen",
-    keys: ["const"],
+    keys: ["const", "let"],
   },
   // ■ HTML TAG
   {
     color: "DodgerBlue",
-    keys: ["input"],
+    keys: ["input", "section"],
   },
   {
-    color: "LightSeaGreen",
-    keys: ["value"],
+    color: "CadetBlue",
+    keys: ["map", "forEach", "reduce", "filter", "find", "fill"],
+  },
+  {
+    color: "SteelBlue",
+    keys: ["value", "key", "ref", "current"],
   },
   {
     color: "darkOrange",
     keys: [
       "onChange",
       "onClick",
-      "PointerEvent",
       "onPointerDown",
       "onPointerUp",
       "onPointerMove",
@@ -54,10 +87,14 @@ export const keysJSTS: KeyDef[] = [
       "position",
       "transition",
       "hover",
+      "fontSize",
+      "padding",
+      "margin",
+      "pointer-events",
     ],
   },
   {
     color: "#555",
-    keys: ["false", "true", "fixed"],
+    keys: ["false", "true", "fixed", "null", "undefined", "void"],
   },
 ]

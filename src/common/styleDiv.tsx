@@ -1,6 +1,6 @@
 import styled, { CSSProperties, css } from "styled-components"
 
-type AttrPosition = "position" | "top" | "bottom" | "right" | "left"
+type AttrPosition = "position" | "top" | "bottom" | "right" | "left" | "zIndex"
 type AttrFlex =
   | "display"
   | "flexDirection"
@@ -29,7 +29,7 @@ type AttrBorder =
   | "borderTop"
   | "borderRadius"
 type AttrColor = "color" | "backgroundColor"
-type AttrFontText = "fontSize" | "fontFamily"
+type AttrFontText = "fontSize" | "fontFamily" | "lineHeight" | "verticalAlign"
 type AttrFlow = "overflow"
 
 type Custom = {
@@ -80,6 +80,7 @@ export const Div = styled.div<Div>`
     ${props.right && `right: ${props.right}`};
     ${props.bottom && `bottom: ${props.bottom}`};
     ${props.left && `left: ${props.left}`};
+    ${props.zIndex && `zIndex: ${props.zIndex}`};
     //flex
     ${props.display && `display: ${props.display}`};
     ${props.flexDirection && `flex-direction: ${props.flexDirection}`};
@@ -115,6 +116,9 @@ export const Div = styled.div<Div>`
     //font
     font-size: ${props.fontSize ?? "inherit"};
     font-family: ${props.fontFamily ?? "inherit"};
+    ${props.lineHeight && `lineHeight: ${props.lineHeight}`};
+    ${props.verticalAlign && `verticalAlign: ${props.verticalAlign}`};
+
     //color
     color: ${props.color ?? "inherit"};
     ${props.backgroundColor && `background-color: ${props.backgroundColor}`};
@@ -189,15 +193,17 @@ export const DivPre = styled.div<Div>`
   `}
 `
 
-export const Span = styled.span<Div>`
+export const Span = styled.span`
   margin: 0;
   padding: 0;
+  font-size: inherit;
 `
 
-export const SpanRed = styled.span<Div>`
+export const SpanRed = styled.span`
   margin: 0;
   padding: 0;
   color: var(--main-color);
+  font-size: inherit;
 `
 
 const NumberRange = ({

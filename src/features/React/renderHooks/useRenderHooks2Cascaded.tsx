@@ -62,18 +62,18 @@ const code = `const RenderHooksCascaded = () => {
     </Column>
   )
 }
-
+ 
 const LocalCompo1 = () => {
   const [value, setValue] = useState("") //LocalHooks
   const handleChange = () => {}
   return <input onChange={handleChange} value={value} />
 }
-
+ 
 const RenderHooksCompo1 = () => {
   const { RenderInput } = useInput() //renderHooks
   return <Row>{RenderInput}</Row>
 }
-
+ 
 const RenderHooksCompo2 = () => {
   const { RenderInput } = useInput() //renderHooks
   return <Row>{RenderInput}</Row>

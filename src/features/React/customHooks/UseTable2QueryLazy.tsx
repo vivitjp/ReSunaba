@@ -1,41 +1,58 @@
-import { Column, Div, Row } from "~/common"
+import { Button, Column, Div, Row } from "~/common"
 import { UseReturnType } from "~/component"
-import { CodeKeyType } from "~/library"
-import { ProgrammingLanguage, UseCustomFetchLazy } from "~/features"
+import { ProgrammingLanguage, useFetchLazy } from "~/features"
 import { useEffect, useState } from "react"
 
-export function UseFetch2Lazy(): UseReturnType {
+export function UseTable2QueryLazy(): UseReturnType {
   const title = `CustomHooks: Fetch Lazy`
   const subTitle = ``
 
   const jsx = <CustomFetch />
-  const codeKeyType: CodeKeyType = "JSTS"
   return {
     title,
     subTitle,
     code,
     options: [],
     jsx,
-    codeKeyType: codeKeyType,
+    codeKeyType: "JSTS",
   }
 }
 
 const CustomFetch = () => {
   return (
     <Column padding="10px">
-      <MainComponent />
+      <TableFromQueryLazy />
     </Column>
   )
 }
 
-const code = ``
-
-const MainComponent = () => {
-  const [count, setCount] = useState(0)
-  const { data, getData, getCount } = UseCustomFetchLazy()
+const code = `export const useFetchLazy = () => {
+  const [data, setData] = useState([])
+  const getData = ({ id }: UseFetch) => {
+    const query = async () => {
+      setData(programmingLanguage)
+    }
+    query()
+  }
+  return [getData, { data }]
+}
+ 
+const TableFromQueryLazy = () => {
+  const [getData, { data }] = useFetchLazy()
 
   useEffect(() => {
-    getData()
+    getData({ id: 1 })
+  }, [getData])
+
+  return <Table data={data} />
+}`
+
+const TableFromQueryLazy = () => {
+  const [count, setCount] = useState(0)
+  const [getData, { data, getCount }] = useFetchLazy()
+
+  useEffect(() => {
+    getData({ id: 1 })
   }, [getData])
 
   const handleCount = () => {
@@ -44,22 +61,16 @@ const MainComponent = () => {
 
   return (
     <Row width="100%" padding="10px" justifyContent="space-between">
-      <Table data={data} />
-      <Row
-        width="200px"
-        border="1px solid #aaa"
-        padding="10px"
-        gap="10px"
-        alignItems="center"
-      >
-        <button onClick={handleCount}>カウント</button>
+      <Row width="200px" padding="10px" gap="30px" alignItems="center">
+        <Button onClick={handleCount}>カウント</Button>
         <Div fontSize="24px">{count}</Div>
       </Row>
+      <Table data={data} />
     </Row>
   )
 }
 
-const Table = ({ data }: { data: ProgrammingLanguage[] }) => {
+const Table = ({ data }: { data: ProgrammingLanguage[] | undefined }) => {
   console.log("UseFetch2Lazy: Table", data !== undefined)
 
   return (

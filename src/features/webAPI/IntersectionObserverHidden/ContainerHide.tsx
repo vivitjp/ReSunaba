@@ -4,12 +4,15 @@ import styled from "styled-components"
 type Props = {
   children: ReactNode
   onIntersect: (status: "Shown" | "Hidden") => void
+  threshold?: number
 }
 
-export const ContainerHidden: FC<Props> = ({ onIntersect, children }) => {
+export const ContainerHidden: FC<Props> = ({
+  onIntersect,
+  threshold = 0.5,
+  children,
+}) => {
   const ref = useRef<HTMLDivElement>(null!)
-
-  console.log("ContainerHidden")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -17,12 +20,11 @@ export const ContainerHidden: FC<Props> = ({ onIntersect, children }) => {
         if (entry.isIntersecting) onIntersect("Shown")
         if (!entry.isIntersecting) onIntersect("Hidden")
       },
-      { threshold: 0.2 }
+      { threshold }
     )
     observer.observe(ref.current)
-    const { current } = ref
     return () => {
-      observer.unobserve(current)
+      if (ref.current) observer.unobserve(ref.current)
     }
   }, [])
 
@@ -34,6 +36,5 @@ const Section = styled.section`
   flex-direction: column;
   gap: 5px;
   width: 100%;
-  //min-height: 400px;
   border: 1px solid #aaa;
 `

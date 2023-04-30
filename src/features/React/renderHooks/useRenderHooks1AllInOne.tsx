@@ -44,7 +44,7 @@ const code = `const RenderHooksAllInOne = () => {
   const { RenderInput: RenderInput1 } = useInput() //renderHooks
   const { RenderInput: RenderInput2 } = useInput() //renderHooks
   const handleChange = () => {}
-
+ 
   return (
     <Column>
       <Row><input onChange={handleChange} value={typedValue} /></Row>

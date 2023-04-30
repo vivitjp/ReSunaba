@@ -13,8 +13,17 @@ type UseCode = {
 }
 
 export const FeaturePresenter: FC<UseCode> = ({ useCode }) => {
-  const { code, codeKeyType, title, subTitle, options, jsx, height, visible } =
-    useCode()
+  const {
+    code,
+    codeKeyType,
+    title,
+    subTitle,
+    options,
+    codeFold,
+    jsx,
+    height,
+    visible,
+  } = useCode()
   const [isVisible, setIsVisible] = visible ?? [null, () => {}]
 
   return (
@@ -51,11 +60,19 @@ export const FeaturePresenter: FC<UseCode> = ({ useCode }) => {
         </Div>
       )}
 
-      {/* コード */}
+      {/* コード  ------------ codeFold ----------*/}
       {code && (
-        <Row width="100%" border="1px solid #ddd">
-          <CodeBox code={code} codeKeyType={codeKeyType} />
-        </Row>
+        <>
+          <details
+            open={!codeFold}
+            style={{ cursor: "pointer", width: "100%" }}
+          >
+            <summary>code</summary>
+            <Row padding={10} width={"100%"} border={"#ddd"}>
+              <CodeBox code={code} codeKeyType={codeKeyType} />
+            </Row>
+          </details>
+        </>
       )}
     </Column>
   )

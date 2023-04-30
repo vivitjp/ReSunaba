@@ -15,33 +15,31 @@ IntersectionObserverEntry
 type Props = {
   children: ReactNode
   index: number
-  onIntersect?: (index: number) => void
+  onIntersectCallback?: (index: number) => void
+  threshold?: number
 }
 
-export const Container: FC<Props> = ({ index, onIntersect, children }) => {
-  const ref = useRef<HTMLDivElement>(null)
+export const Container: FC<Props> = ({
+  index,
+  onIntersectCallback, //(index: number) => void
+  children,
+  threshold = 0.5,
+}) => {
+  const ref = useRef<HTMLDivElement>(null!)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        //配列:IntersectionObserverEntry
-        console.log(entries.length)
-
-        if (entries?.[0].isIntersecting) {
-          if (onIntersect) onIntersect(index)
-        }
+      ([entry]) => {
+        if (entry.isIntersecting && onIntersectCallback)
+          onIntersectCallback(index)
       },
-      { threshold: 0.5 }
+      { threshold }
     )
 
     if (ref.current === null) return
-
     observer.observe(ref.current)
-
-    const { current } = ref
-
     return () => {
-      observer.unobserve(current)
+      if (ref.current) observer.unobserve(ref.current)
     }
   }, [])
 

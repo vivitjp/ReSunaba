@@ -4,6 +4,8 @@ import {
   PageCustomHooks,
   PageIntersectionObserver,
   PageIntersectionObserverHide,
+  PageReactMemo,
+  PageZustand,
 } from "~/pages"
 import { PageRenderHooks } from "~/pages/React/PageRenderHooks"
 
@@ -30,6 +32,11 @@ export const menuGroup: MenuGroup = {
   ],
   React: [
     {
+      name: "React.memo",
+      path: "/reactMemo",
+      element: PageReactMemo,
+    },
+    {
       name: "CustomHooks",
       path: "/customHooks",
       element: PageCustomHooks,
@@ -38,6 +45,11 @@ export const menuGroup: MenuGroup = {
       name: "RenderHooks",
       path: "/renderHooks",
       element: PageRenderHooks,
+    },
+    {
+      name: "zustand",
+      path: "/zustand",
+      element: PageZustand,
     },
   ],
   WebAPI: [
