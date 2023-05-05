@@ -1,7 +1,7 @@
-import { Column } from "~/common"
-import { UseReturnType } from "~/component"
-import { FeaturePresenter } from "~/featureCommon"
-import { UseReactMemo } from "~/features"
+import { Column } from "../../common/styleDiv"
+import { UseReturnType } from "../../component/type/type"
+import { FeaturePresenter } from "../../featureCommon"
+import { UseReactMemo } from "../../features/React/reactMemo/ReactMemo"
 
 const codes: (() => UseReturnType)[] = [UseReactMemo]
 

@@ -1,7 +1,9 @@
-import { Button, Column, Div, Row } from "~/common"
-import { UseReturnType } from "~/component"
 import React, { useState } from "react"
-import { ProgrammingLanguage, useFetch } from "~/features"
+import { useFetch } from "../components/UseFetch"
+import { ProgrammingLanguage } from "../../mock/programmingLanguage"
+import { UseReturnType } from "../../../component/type/type"
+import { Row, Column, Div } from "../../../common/styleDiv"
+import { Button } from "../../../common/styleInput"
 
 let Count: number = 0
 let CounterMemo: number = 0
@@ -44,6 +46,7 @@ const ParentCompo = () => {
 
   return (
     <Row padding="10px" gap="10px" justifyContent="space-between">
+      <Column width="200px"></Column>
       <Column width="200px">
         <Button onClick={handle}>回数表示</Button>
       </Column>

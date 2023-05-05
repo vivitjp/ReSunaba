@@ -1,5 +1,5 @@
-import { UseReturnType } from "~/component"
-import { CodeKeyType } from "~/library"
+import { UseReturnType } from "../../../component/type/type"
+import { CodeKeyType } from "../../../library/syntaxHighlighter/syntaxHighlighter"
 
 export function useRenderHooksUseInput(): UseReturnType {
   const title = `RenderHook: Input`

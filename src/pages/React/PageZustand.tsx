@@ -1,7 +1,8 @@
-import { Column } from "~/common"
-import { UseReturnType } from "~/component"
-import { FeaturePresenter } from "~/featureCommon"
-import { UseZustandOneCompo, UseZustandCascaded } from "~/features"
+import { Column } from "../../common/styleDiv"
+import { UseReturnType } from "../../component/type/type"
+import { FeaturePresenter } from "../../featureCommon"
+import { UseZustandCascaded } from "../../features/React/zustand/UseZustandCascaded"
+import { UseZustandOneCompo } from "../../features/React/zustand/UseZustandOneCompo"
 
 const codes: (() => UseReturnType)[] = [UseZustandOneCompo, UseZustandCascaded]
 

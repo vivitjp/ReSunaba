@@ -1,4 +1,4 @@
-import { UseReturnType } from "~/component"
+import { UseReturnType } from "../../../component/type/type"
 
 export function UseZustandStoreSlice(): UseReturnType {
   const title = `zustand store: Slice パターン`

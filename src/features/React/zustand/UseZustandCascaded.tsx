@@ -1,6 +1,7 @@
-import { Button, Column, Input, Row } from "~/common"
-import { UseReturnType } from "~/component"
-import { useCount2 } from "~/features"
+import { Column, Row } from "../../../common/styleDiv"
+import { Button, Input } from "../../../common/styleInput"
+import { UseReturnType } from "../../../component/type/type"
+import { useCount2 } from "../../../store/storeBasic"
 
 export function UseZustandCascaded(): UseReturnType {
   const title = `コンポーネント分散処理`
@@ -21,10 +22,7 @@ export function UseZustandCascaded(): UseReturnType {
 const ZustandCascaded = () => {
   return (
     <Column gap="10px">
-      <Row fontSize="18px" padding="5px" gap="20px">
-        <CountUp />
-        <Count />
-      </Row>
+      <Count />
       <Row padding="5px" alignItems="center" gap="10px">
         <Row fontSize="16px" padding="5px" width={"100px"}>
           Name:
@@ -32,28 +30,23 @@ const ZustandCascaded = () => {
         <InputName />
         <Name />
       </Row>
-      <Row padding="5px" alignItems="center" gap="10px">
-        <Row fontSize="16px" padding="5px" width={"100px"}>
-          Address:
-        </Row>
-        <InputAddress />
-      </Row>
+      <Address />
     </Column>
   )
 }
 
 const Count = () => {
+  const countUp = useCount2((state) => state.countUp)
   const count = useCount2((state) => state.count)
+
   return (
-    <Row fontSize="24px" padding="5px">
-      {count}
+    <Row fontSize="18px" padding="5px" gap="20px">
+      <Button onClick={countUp}>Count Up</Button>
+      <Row fontSize="24px" padding="5px">
+        {count}
+      </Row>
     </Row>
   )
-}
-
-const CountUp = () => {
-  const countUp = useCount2((state) => state.countUp)
-  return <Button onClick={countUp}>Count Up</Button>
 }
 
 const InputName = () => {
@@ -72,12 +65,12 @@ const Name = () => {
 
   return (
     <Row fontSize="16px" padding="5px" width={"300px"}>
-      {name.toUpperCase()}
+      {name}
     </Row>
   )
 }
 
-const InputAddress = () => {
+const Address = () => {
   const address = useCount2((state) => state.address)
   const setAddress = useCount2((state) => state.setAddress)
 
@@ -86,70 +79,67 @@ const InputAddress = () => {
   }
 
   return (
-    <>
+    <Row padding="5px" alignItems="center" gap="10px">
+      <Row fontSize="16px" padding="5px" width={"100px"}>
+        Address:
+      </Row>
       <Input onChange={handleAddress} value={address} width={"160px"} />
       <Row fontSize="16px" padding="5px" width={"300px"}>
-        {address.toUpperCase()}
+        {address}
       </Row>
-    </>
+    </Row>
   )
 }
 
 const code = `const ZustandCascaded = () => {
   return (
     <>
-      <>
-        <CountUp />
-        <Count />
-      </>
+      <Count />
       <>
         Name: <InputName />
         <Name />
       </>
-      <>
-        Address: <InputAddress />
-      </>
+      <Address />
     </>
   )
 }
  
 const Count = () => {
-  const count = useCount2((state) => state.count)
+  const countUp = useCount((state) => state.countUp)
+  const count = useCount((state) => state.count)
  
-  return <>{count} <>
-}
- 
-const CountUp = () => {
-  const countUp = useCount2((state) => state.countUp)
- 
-  return <Button onClick={countUp}>Count Up</Button>
-}
- 
-const InputName = () => {
-  const name = useCount2((state) => state.name)
-  const setName = useCount2((state) => state.setName)
-  const handleName = (e) => { setName(e.currentTarget.value) }
- 
-  return <Input onChange={handleName} value={name} width={"160px"} />
-}
- 
-const Name = () => {
-  const name = useCount2((state) => state.name)
- 
-  return <> {name.toUpperCase()} </>
+  return (
+    <>
+      <Button onClick={countUp}>Count Up</Button>
+      <> {count} </>
+    </>
   )
 }
  
-const InputAddress = () => {
-  const address = useCount2((state) => state.address)
-  const setAddress = useCount2((state) => state.setAddress)
+const InputName = () => {
+  const name = useCount((state) => state.name)
+  const setName = useCount((state) => state.setName)
+  const handleName = (e) => { setName(e.currentTarget.value) }
+ 
+  return <Input onChange={handleName} value={name} />
+}
+ 
+const Name = () => {
+  const name = useCount((state) => state.name)
+ 
+  return <> {name} </>
+}
+ 
+const Address = () => {
+  const address = useCount((state) => state.address)
+  const setAddress = useCount((state) => state.setAddress)
  
   const handleAddress = (e) => { setAddress(e.currentTarget.value) }
  
   return (
     <>
-      <Input onChange={handleAddress} value={address} width={"160px"} />
-      <> {address.toUpperCase()} </>
+      <Input onChange={handleAddress} value={address} />
+      <> {address} </>
     </>
   )
 }`

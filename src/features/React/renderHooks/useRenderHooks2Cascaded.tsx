@@ -1,7 +1,6 @@
-import { Column } from "~/common"
-import { Row } from "~/common"
-import { UseReturnType } from "~/component"
-import { CodeKeyType } from "~/library"
+import { Column, Row } from "../../../common/styleDiv"
+import { UseReturnType } from "../../../component/type/type"
+import { CodeKeyType } from "../../../library/syntaxHighlighter/syntaxHighlighter"
 import { useInput } from "./components/UseInput"
 import { ChangeEvent, useState } from "react"
 

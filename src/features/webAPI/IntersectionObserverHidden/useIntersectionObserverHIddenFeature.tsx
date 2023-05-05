@@ -1,9 +1,10 @@
 import { useState } from "react"
-import { UseReturnType } from "~/component"
-import { CodeKeyType } from "~/library"
 import styled from "styled-components"
 import { ContainerHidden } from "./ContainerHide"
-import { Button, Row } from "~/common"
+import { UseReturnType } from "../../../component/type/type"
+import { Row } from "../../../common/styleDiv"
+import { Button } from "../../../common/styleInput"
+import { CodeKeyType } from "../../../library/syntaxHighlighter/syntaxHighlighter"
 
 export function useIntersectionObserverHideFeature(): UseReturnType {
   const title = `Intersection Observer`

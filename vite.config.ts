@@ -6,12 +6,12 @@ import react from "@vitejs/plugin-react"
 
 export default defineConfig({
   plugins: [react()],
-  resolve: {
-    alias: [
-      {
-        find: "~",
-        replacement: path.join(__dirname, "src"),
-      },
-    ],
-  },
+  // resolve: {
+  //   alias: [
+  //     {
+  //       find: "~",
+  //       replacement: path.join(__dirname, "src"),
+  //     },
+  //   ],
+  // },
 })

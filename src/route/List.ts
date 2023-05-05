@@ -1,14 +1,13 @@
-import { Home } from "~/pages/Home"
-import {
-  PageAnimationSlide,
-  PageCustomHooks,
-  PageIntersectionObserver,
-  PageIntersectionObserverHide,
-  PageReactMemo,
-  PageZustand,
-  PageZustandStore,
-} from "~/pages"
-import { PageRenderHooks } from "~/pages/React/PageRenderHooks"
+import { PageAnimationSlide } from "../pages/CSS/PageAnimationSlide"
+import { Home } from "../pages/Home"
+import { PageCustomHooks } from "../pages/React/PageCustomHooks"
+import { PageReactMemo } from "../pages/React/PageReactMemo"
+import { PageRenderHooks } from "../pages/React/PageRenderHooks"
+import { PageUseMemo } from "../pages/React/PageUseMemo"
+import { PageZustand } from "../pages/React/PageZustand"
+import { PageZustandStore } from "../pages/React/PageZustandStore"
+import { PageIntersectionObserver } from "../pages/webAPI/PageIntersectionObserver"
+import { PageIntersectionObserverHide } from "../pages/webAPI/PageIntersectionObserverHide"
 
 type MenuGroup = { [key: string]: Menu[] }
 
@@ -32,6 +31,11 @@ export const menuGroup: MenuGroup = {
     },
   ],
   React: [
+    {
+      name: "useMemo",
+      path: "/useMemo",
+      element: PageUseMemo,
+    },
     {
       name: "React.memo",
       path: "/reactMemo",

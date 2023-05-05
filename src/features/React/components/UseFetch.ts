@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import {
   ProgrammingLanguage,
   programmingLanguage,
-} from "~/features/mock/programmingLanguage"
+} from "../../mock/programmingLanguage"
 
 type UseFetch = {
   id: number

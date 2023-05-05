@@ -1,6 +1,7 @@
-import { Button, Column, Input, Row } from "~/common"
-import { UseReturnType } from "~/component"
-import { useCount } from "~/features"
+import { Column, Row } from "../../../common/styleDiv"
+import { Button, Input } from "../../../common/styleInput"
+import { UseReturnType } from "../../../component/type/type"
+import { useCount } from "../../../store/storeBasic"
 
 export function UseZustandOneCompo(): UseReturnType {
   const title = `1コンポーネント処理`

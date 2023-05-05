@@ -1,9 +1,9 @@
 import { useRef, useState } from "react"
-import { Column, Div, Row } from "~/common"
-import { UseReturnType } from "~/component"
-import { CodeKeyType } from "~/library"
 import { Container } from "./Container"
 import styled from "styled-components"
+import { UseReturnType } from "../../../component/type/type"
+import { Column, Row, Div } from "../../../common/styleDiv"
+import { CodeKeyType } from "../../../library/syntaxHighlighter/syntaxHighlighter"
 
 export function useIntersectionObserverFeature(): UseReturnType {
   const title = `Intersection Observer`

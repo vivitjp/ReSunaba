@@ -6,7 +6,7 @@ import {
   syntaxHighlight,
 } from "../../library/syntaxHighlighter/syntaxHighlighter"
 import { FC } from "react"
-import { UseReturnType } from "~/component"
+import { UseReturnType } from "../../component/type/type"
 
 type UseCode = {
   useCode: () => UseReturnType
@@ -63,12 +63,9 @@ export const FeaturePresenter: FC<UseCode> = ({ useCode }) => {
       {/* コード  ------------ codeFold ----------*/}
       {code && (
         <>
-          <Details
-            open={!codeFold}
-            style={{ cursor: "pointer", width: "100%" }}
-          >
+          <Details open={!codeFold}>
             <Summary>Code</Summary>
-            <Row padding={10} width={"100%"} border={"#ddd"}>
+            <Row padding={10} width={"100%"} backgroundColor={"ivory"}>
               <CodeBox code={code} codeKeyType={codeKeyType} />
             </Row>
           </Details>
@@ -156,6 +153,7 @@ const OptionSubTitle = styled(Div)`
 const Details = styled.details`
   width: 100%;
   cursor: text;
+  border: #ddd;
 `
 
 const Summary = styled.summary`

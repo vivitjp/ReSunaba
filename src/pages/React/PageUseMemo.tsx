@@ -1,13 +1,13 @@
 import { Column } from "../../common/styleDiv"
 import { UseReturnType } from "../../component/type/type"
 import { FeaturePresenter } from "../../featureCommon"
-import { useIntersectionObserverFeature } from "../../features/webAPI/IntersectionObserver/useIntersectionObserverFeature"
+import { UseMemo } from "../../features/React/useMemo/UseMemo"
 
-const codes: (() => UseReturnType)[] = [useIntersectionObserverFeature]
+const codes: (() => UseReturnType)[] = [UseMemo]
 
-export const PageIntersectionObserver = () => {
+export const PageUseMemo = () => {
   return (
-    <Column padding={6} gap={40}>
+    <Column padding={"6px"} gap={"40px"}>
       {!!codes.length &&
         codes.map((useCode, idx) => {
           return <FeaturePresenter key={idx} useCode={useCode} />

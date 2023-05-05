@@ -1,4 +1,4 @@
-import { KeyDef } from "~/library/syntaxHighlighter/syntaxHighlighter"
+import { KeyDef } from "../syntaxHighlighter"
 
 export const keysJSTS: KeyDef[] = [
   {

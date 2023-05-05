@@ -1,11 +1,9 @@
-import { Column } from "~/common"
-import { UseReturnType } from "~/component"
-import { FeaturePresenter } from "~/featureCommon"
-import {
-  useRenderHooks1AllInOne,
-  useRenderHooks2Cascaded,
-  useRenderHooksUseInput,
-} from "~/features"
+import { Column } from "../../common/styleDiv"
+import { UseReturnType } from "../../component/type/type"
+import { FeaturePresenter } from "../../featureCommon"
+import { useRenderHooksUseInput } from "../../features/React/renderHooks/useRenderHooks0"
+import { useRenderHooks1AllInOne } from "../../features/React/renderHooks/useRenderHooks1AllInOne"
+import { useRenderHooks2Cascaded } from "../../features/React/renderHooks/useRenderHooks2Cascaded"
 
 const codes: (() => UseReturnType)[] = [
   useRenderHooksUseInput,

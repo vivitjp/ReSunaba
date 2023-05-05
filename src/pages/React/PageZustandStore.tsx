@@ -1,7 +1,8 @@
-import { Column } from "~/common"
-import { UseReturnType } from "~/component"
-import { FeaturePresenter } from "~/featureCommon"
-import { UseZustandStore, UseZustandStoreSlice } from "~/features"
+import { Column } from "../../common/styleDiv"
+import { UseReturnType } from "../../component/type/type"
+import { FeaturePresenter } from "../../featureCommon"
+import { UseZustandStore } from "../../features/React/zustand/UseZustandStore"
+import { UseZustandStoreSlice } from "../../features/React/zustand/UseZustandStoreSlice"
 
 const codes: (() => UseReturnType)[] = [UseZustandStore, UseZustandStoreSlice]
 

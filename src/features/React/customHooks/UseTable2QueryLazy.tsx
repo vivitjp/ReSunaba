@@ -1,7 +1,9 @@
-import { Button, Column, Div, Row } from "~/common"
-import { UseReturnType } from "~/component"
-import { ProgrammingLanguage, useFetchLazy } from "~/features"
 import { useEffect, useState } from "react"
+import { ProgrammingLanguage } from "../../mock/programmingLanguage"
+import { useFetchLazy } from "../components/UseFetchLazy"
+import { UseReturnType } from "../../../component/type/type"
+import { Column, Row, Div } from "../../../common/styleDiv"
+import { Button } from "../../../common/styleInput"
 
 export function UseTable2QueryLazy(): UseReturnType {
   const title = `CustomHooks: Fetch Lazy`

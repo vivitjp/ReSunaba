@@ -1,6 +1,4 @@
-import { KeyDef } from "~/library/syntaxHighlighter/syntaxHighlighter"
-
-//  { color: "CadetBlue", keys: ["class", "color", "style"] },
+import { KeyDef } from "../syntaxHighlighter"
 
 export const keysSVG: KeyDef[] = [
   { color: "IndianRed", keys: ["svg", "React"] },

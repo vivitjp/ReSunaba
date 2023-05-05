@@ -1,6 +1,6 @@
-import { Column, Div, SlideWidth } from "~/common"
-import { UseReturnType } from "~/component"
-import { CodeKeyType } from "~/library"
+import { Column, Div, SlideWidth } from "../../../common/styleDiv"
+import { UseReturnType } from "../../../component/type/type"
+import { CodeKeyType } from "../../../library/syntaxHighlighter/syntaxHighlighter"
 
 export function useAnimationSlide(): UseReturnType {
   const title = `Animation: Slide`

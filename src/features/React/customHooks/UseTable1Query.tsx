@@ -1,7 +1,9 @@
-import { Button, Column, Div, Row } from "~/common"
-import { UseReturnType } from "~/component"
-import { useFetch, ProgrammingLanguage } from "~/features"
-import { Suspense, useState } from "react"
+import { useState } from "react"
+import { ProgrammingLanguage } from "../../mock/programmingLanguage"
+import { useFetch } from "../components/UseFetch"
+import { UseReturnType } from "../../../component/type/type"
+import { Column, Row, Div } from "../../../common/styleDiv"
+import { Button } from "../../../common/styleInput"
 
 export function UseTable1Query(): UseReturnType {
   const title = `CustomHooks`

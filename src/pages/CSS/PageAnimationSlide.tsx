@@ -1,7 +1,7 @@
-import { Column } from "~/common"
-import { UseReturnType } from "~/component"
-import { FeaturePresenter } from "~/featureCommon"
-import { useAnimationSlide } from "~/features"
+import { Column } from "../../common/styleDiv"
+import { UseReturnType } from "../../component/type/type"
+import { FeaturePresenter } from "../../featureCommon"
+import { useAnimationSlide } from "../../features/css/animation/useSlide"
 
 const codes: (() => UseReturnType)[] = [useAnimationSlide]
 
