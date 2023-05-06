@@ -6,6 +6,7 @@ import { PageRenderHooks } from "../pages/React/PageRenderHooks"
 import { PageUseMemo } from "../pages/React/PageUseMemo"
 import { PageZustand } from "../pages/React/PageZustand"
 import { PageZustandStore } from "../pages/React/PageZustandStore"
+import { PageEntries } from "../pages/TypeScript/PageEntries"
 import { PageIntersectionObserver } from "../pages/webAPI/PageIntersectionObserver"
 import { PageIntersectionObserverHide } from "../pages/webAPI/PageIntersectionObserverHide"
 
@@ -28,6 +29,13 @@ export const menuGroup: MenuGroup = {
       name: "スライドMenu",
       path: "/animation-slide-menu",
       element: PageAnimationSlide,
+    },
+  ],
+  TypeScript: [
+    {
+      name: "Object.entries",
+      path: "/objectEntries",
+      element: PageEntries,
     },
   ],
   React: [

@@ -27,7 +27,7 @@ export const FeaturePresenter: FC<UseCode> = ({ useCode }) => {
   const [isVisible, setIsVisible] = visible ?? [null, () => {}]
 
   return (
-    <Column gap={"24px"} width="100%" padding="0 10px">
+    <Column gap="24px" width="100%" minWidth="700px" padding="0 10px">
       {/* タイトル */}
       {title && <MainTitle>{title}</MainTitle>}
 

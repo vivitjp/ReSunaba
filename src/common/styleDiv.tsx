@@ -7,7 +7,13 @@ type AttrFlex =
   | "justifyContent"
   | "alignItems"
   | "gap"
-type AttrSize = "width" | "height"
+type AttrSize =
+  | "width"
+  | "minWidth"
+  | "maxWidth"
+  | "height"
+  | "minHeight"
+  | "maxHeight"
 type AttrPadding =
   | "padding"
   | "paddingLeft"
@@ -91,7 +97,11 @@ export const Div = styled.div<Div>`
     ${props.gap && `gap: ${props.gap}`};
     //size
     ${props.width && `width: ${props.width}`};
+    ${props.minWidth && `min-width: ${props.minWidth}`};
+    ${props.maxWidth && `max-width: ${props.maxWidth}`};
     ${props.height && `height: ${props.height}`};
+    ${props.minHeight && `min-height: ${props.minHeight}`};
+    ${props.maxHeight && `max-height: ${props.maxHeight}`};
     //padding
     ${props.padding && `padding: ${props.padding}`};
     ${props.paddingTop && `padding-top: ${props.paddingTop}`};

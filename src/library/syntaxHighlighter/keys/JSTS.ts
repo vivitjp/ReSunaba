@@ -13,6 +13,7 @@ export const keysJSTS: KeyDef[] = [
       "type",
     ],
   },
+  // ■ Hooks / Packages
   {
     color: "LightSeaGreen",
     keys: [
@@ -24,6 +25,12 @@ export const keysJSTS: KeyDef[] = [
       "zustand",
     ],
   },
+  // ■ TypeScript
+  {
+    color: "LightSeaGreen",
+    keys: ["as", "extends", "infer", "never", "keyof", "typeof"],
+  },
+  // ■ WebAPI
   {
     color: "Goldenrod",
     keys: [
@@ -49,14 +56,16 @@ export const keysJSTS: KeyDef[] = [
     color: "DodgerBlue",
     keys: ["input", "section"],
   },
+  // ■ JS Methods
   {
     color: "CadetBlue",
     keys: ["map", "forEach", "reduce", "filter", "find", "fill"],
   },
   {
     color: "SteelBlue",
-    keys: ["value", "key", "ref", "current"],
+    keys: ["value", "key", "Object", "keys", "values", "ref", "current"],
   },
+  //Event
   {
     color: "darkOrange",
     keys: [

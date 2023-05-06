@@ -31,18 +31,20 @@ export const TextArea = styled.textarea<CSSProperties>`
 `
 
 export const Button = styled.button<CSSProperties>`
-  width: 100px;
-  height: 40px;
-  padding: 10px;
-  border: none;
-  border: 1px solid #aaa;
-  background-color: white;
-  border-radius: 5px;
-  text-align: center;
-  &:hover {
-    background-color: #eee;
-  }
-  box-shadow: 0 0 5px #bbb;
+  ${(props) => css`
+    width: ${props.width ?? "100px"};
+    height: 40px;
+    padding: 10px;
+    border: none;
+    border: 1px solid #aaa;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+    &:hover {
+      background-color: #eee;
+    }
+    box-shadow: 0 0 5px #bbb;
+  `}
 `
 
 export const Checkbox = styled.input.attrs<CSSProperties>({ type: "checkbox" })`

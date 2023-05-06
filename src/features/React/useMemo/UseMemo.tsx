@@ -1,6 +1,6 @@
-import { ReactElement, useCallback, useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { UseReturnType } from "../../../component/type/type"
-import { Column, Div, Row } from "../../../common/styleDiv"
+import { Column, Div, Row, Title } from "../../../common/styleDiv"
 import { Button } from "../../../common/styleInput"
 import {
   ProgrammingLanguage,
@@ -8,6 +8,8 @@ import {
 } from "../../mock/programmingLanguage"
 import { useFetchMock } from "../components/UseFetchMock"
 import { useInputForMemo } from "./components/useInputForMemo"
+import { useCount2 } from "../../../store/storeBasic"
+import { Table } from "../../../component/Table"
 
 export function UseMemo(): UseReturnType {
   const title = `useMemo`
@@ -24,8 +26,17 @@ export function UseMemo(): UseReturnType {
     codeKeyType: "JSTS",
   }
 }
-const code = `const { data } = useFetchMock({ id: 1 })
+const code = `■ Zustand
+const countUp = useCount((state) => state.countUp)
+const count = useCount((state) => state.count)
  
+■ RenderHooks
+const { RenderInput } = useInputForMemo()
+ 
+■ fetch
+const { data } = useFetchMock({ id: 1 })
+ 
+■ useMemo1
 const reData1 = useMemo(() => {
   countUndefined1++
   if (!data) return undefined
@@ -33,6 +44,7 @@ const reData1 = useMemo(() => {
   return data.map((item) => ({ ...item }))
 }, [data]) <-- 依存配列がオブジェクト
  
+■ useMemo2
 const reData2 = useMemo(() => {
   countUndefined2++
   if (!data) return undefined
@@ -47,15 +59,21 @@ let countWithData2 = 0
 
 const ParentCompo = () => {
   const [counters, setCounters] = useState<number[]>([0, 0, 0, 0])
+  const [fetchCounter, setFetchCounters] = useState<number>(0)
 
-  const { RenderInput, inputValue } = useInputForMemo()
+  const countUp = useCount2((state) => state.countUp)
+  const count = useCount2((state) => state.count)
 
-  const { data } = useFetchMock<ProgrammingLanguage>({
+  const { RenderInput } = useInputForMemo()
+
+  const { data, getCount } = useFetchMock<ProgrammingLanguage>({
     id: 1,
     incomingData: programmingLanguage,
   })
 
   const reData1 = useMemo(() => {
+    console.log("reData1")
+
     countUndefined1++
     if (!data) return undefined
     countWithData1++
@@ -63,6 +81,8 @@ const ParentCompo = () => {
   }, [data])
 
   const reData2 = useMemo(() => {
+    console.log("reData2")
+
     countUndefined2++
     if (!data) return undefined
     countWithData2++
@@ -70,6 +90,7 @@ const ParentCompo = () => {
   }, [data?.[0].id])
 
   const handle = () => {
+    setFetchCounters(getCount())
     setCounters([
       countUndefined1,
       countWithData1,
@@ -88,50 +109,46 @@ const ParentCompo = () => {
 
   return (
     <Row padding="10px" gap="10px" justifyContent="space-between">
-      <Column gap="10px">
-        <Column width="200px">{RenderInput}</Column>
-        <Column width="200px">{inputValue}</Column>
-        <Column width="200px">
+      <Column width="400px" gap="10px">
+        <Column>
           <Button onClick={handle}>回数表示</Button>
+        </Column>
+
+        <Title>fetch コール回数</Title>
+        <Column>
+          <Div fontSize="18px">Fetch回数: {fetchCounter}</Div>
+        </Column>
+
+        <Title>renderHooks Input</Title>
+        <Column width="200px">{RenderInput}</Column>
+        <Column width="160px" gap="10px">
+          <Title>zustand</Title>
+          <Row alignItems="center" gap="20px">
+            <Button width="100px" onClick={countUp}>
+              Count
+            </Button>
+            <Column padding="10px" fontSize="24px">
+              {count}
+            </Column>
+          </Row>
         </Column>
       </Column>
       <Column width="fit-content" gap="10px" padding="10px">
-        <Row width="500px" justifyContent="space-between" alignItems="center">
+        <Row width="400px" justifyContent="space-between" alignItems="center">
           <Table<ProgrammingLanguage> data={reData1} callback={displayCB} />
           <Column>
-            <Div fontSize="18px">回数(Undefined): {counters[0]}</Div>
-            <Div fontSize="18px">回数(Dataあり): {counters[1]}</Div>
+            <Div fontSize="18px">countUndefined1: {counters[0]}</Div>
+            <Div fontSize="18px">countWithData1: {counters[1]}</Div>
           </Column>
         </Row>
-        <Row width="500px" justifyContent="space-between" alignItems="center">
+        <Row width="400px" justifyContent="space-between" alignItems="center">
           <Table<ProgrammingLanguage> data={reData2} callback={displayCB} />
           <Column>
-            <Div fontSize="18px">回数(Undefined): {counters[2]}</Div>
-            <Div fontSize="18px">回数(Dataあり): {counters[3]}</Div>
+            <Div fontSize="18px">countUndefined2: {counters[2]}</Div>
+            <Div fontSize="18px">countWithData2: {counters[3]}</Div>
           </Column>
         </Row>
       </Column>
     </Row>
-  )
-}
-
-type Table<T> = {
-  data: T[] | undefined
-  callback: (item: T) => ReactElement
-}
-
-const Table = <T,>({ data, callback }: Table<T>) => {
-  return (
-    <>
-      {!!data?.length && (
-        <Column width="300px" border="1px solid #aaa" padding="10px">
-          {data.map((item, index) => (
-            <Row key={index} borderBottom="1px solid #aaa">
-              {callback(item)}
-            </Row>
-          ))}
-        </Column>
-      )}
-    </>
   )
 }
