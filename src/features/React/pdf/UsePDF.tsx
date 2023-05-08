@@ -42,7 +42,11 @@ const PDF = () => {
   )
 }
 
-const code = `import fontRegular from "../../../assets/font/Nasu-Regular.ttf"
+const code = `■ インストール yarn add @react-pdf/renderer
+ 
+import { PDFDownloadLink, Page, Text, View, Font, 
+  Document, StyleSheet } from "@react-pdf/renderer"
+import fontRegular from "../../../assets/font/Nasu-Regular.ttf"
 import fontBold from "../../../assets/font/Nasu-Bold.ttf"
  
 const style = StyleSheet.create({
