@@ -5,12 +5,10 @@ import { useCount2 } from "../../../store/storeBasic"
 
 export function UseZustandCascaded(): UseReturnType {
   const title = `コンポーネント分散処理`
-  const subTitle = ``
 
   const jsx = <ZustandCascaded />
   return {
     title,
-    subTitle,
     code,
     codeFold: true,
     options: [],

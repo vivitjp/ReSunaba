@@ -13,48 +13,46 @@ export const useCount = create<CountState>()((set) => ({
   count: 0,
   countUp: () => set((state) => ({ count: state.count + 1 })),
   name: "",
-  setName: (name) => set((state) => ({ name })),
+  setName: (name) => set(() => ({ name })),
   address: "",
-  setAddress: (address) => set((state) => ({ address })),
+  setAddress: (address) => set(() => ({ address })),
 }))
 
 export const useCount2 = create<CountState>()((set) => ({
   count: 0,
   countUp: () => set((state) => ({ count: state.count + 1 })),
   name: "",
-  setName: (name) => set((state) => ({ name })),
+  setName: (name) => set(() => ({ name })),
   address: "",
-  setAddress: (address) => set((state) => ({ address })),
+  setAddress: (address) => set(() => ({ address })),
+}))
+
+export const useCount3 = create<CountState>()((set) => ({
+  count: 0,
+  countUp: () => set((state) => ({ count: state.count + 1 })),
+  name: "",
+  setName: (name) => set(() => ({ name })),
+  address: "",
+  setAddress: (address) => set(() => ({ address })),
 }))
 
 //-----------------------------------------
-// Slice Pattern (費用対効果低し)
+// Slice Pattern
 //-----------------------------------------
 export interface NameSlice {
   name: String
   setName: (name: string) => void
 }
-export interface AddressSlice {
-  address: String
-  setAddress: (address: string) => void
-}
-
-const createNameSlice: StateCreator<
-  NameSlice & AddressSlice,
-  [],
-  [],
-  NameSlice
-> = (set) => ({
+const createNameSlice: StateCreator<NameSlice> = (set) => ({
   name: "",
   setName: (name) => set({ name }),
 })
 
-const createAddressSlice: StateCreator<
-  AddressSlice & AddressSlice,
-  [],
-  [],
-  AddressSlice
-> = (set) => ({
+export interface AddressSlice {
+  address: String
+  setAddress: (address: string) => void
+}
+const createAddressSlice: StateCreator<AddressSlice> = (set) => ({
   address: "",
   setAddress: (address) => set({ address }),
 })

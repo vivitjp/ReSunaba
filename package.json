@@ -12,6 +12,7 @@
     "barrels": "barrelsby -c barrelsby.json"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^3.1.9",
     "@testing-library/react-hooks": "^8.0.1",
     "date-fns": "^2.29.3",
     "jotai": "^1.12.1",
@@ -20,7 +21,6 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.3",
     "react-router-dom": "^6.4.3",
-    "react-syntax-highlighter": "^15.5.0",
     "recoil": "^0.7.6",
     "styled-components": "^5.3.6",
     "swr": "^2.0.0",

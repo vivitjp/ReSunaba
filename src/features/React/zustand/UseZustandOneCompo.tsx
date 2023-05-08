@@ -4,13 +4,11 @@ import { UseReturnType } from "../../../component/type/type"
 import { useCount } from "../../../store/storeBasic"
 
 export function UseZustandOneCompo(): UseReturnType {
-  const title = `1コンポーネント処理`
-  const subTitle = ``
+  const title = `コンポーネント処理(Oneコンポーネント)`
 
   const jsx = <ZustandOne />
   return {
     title,
-    subTitle,
     code,
     codeFold: true,
     options: [],

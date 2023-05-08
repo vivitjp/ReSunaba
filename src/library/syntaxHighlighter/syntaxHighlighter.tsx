@@ -5,7 +5,7 @@ const codeKeyType = {
   SVG: "SVG",
   JSTS: "JSTS",
 } as const
-export type CodeKeyType = typeof codeKeyType[keyof typeof codeKeyType]
+export type CodeKeyType = (typeof codeKeyType)[keyof typeof codeKeyType]
 
 export type KeyDef = {
   color: string
@@ -31,7 +31,7 @@ export const syntaxHighlight = ({
       break
   }
 
-  const escaped = escapeHtml(code)
+  const escaped = escapeHtml(code) ?? ""
 
   const rebuilt: JSX.Element[] = []
 

@@ -2,9 +2,14 @@ import { Column } from "../../common/styleDiv"
 import { UseReturnType } from "../../component/type/type"
 import { FeaturePresenter } from "../../featureCommon"
 import { UseZustandCascaded } from "../../features/React/zustand/UseZustandCascaded"
+import { UseZustandObject } from "../../features/React/zustand/UseZustandObject"
 import { UseZustandOneCompo } from "../../features/React/zustand/UseZustandOneCompo"
 
-const codes: (() => UseReturnType)[] = [UseZustandOneCompo, UseZustandCascaded]
+const codes: (() => UseReturnType)[] = [
+  UseZustandOneCompo,
+  UseZustandCascaded,
+  UseZustandObject,
+]
 
 export const PageZustand = () => {
   return (

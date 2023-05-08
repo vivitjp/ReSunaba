@@ -1,14 +1,15 @@
 import { PageAnimationSlide } from "../pages/CSS/PageAnimationSlide"
 import { Home } from "../pages/Home"
 import { PageCustomHooks } from "../pages/React/PageCustomHooks"
+import { PageEntries } from "../pages/TypeScript/PageEntries"
+import { PageIntersectionObserver } from "../pages/webAPI/PageIntersectionObserver"
+import { PageIntersectionObserverHide } from "../pages/webAPI/PageIntersectionObserverHide"
+import { PagePDF } from "../pages/React/PagePDF"
 import { PageReactMemo } from "../pages/React/PageReactMemo"
 import { PageRenderHooks } from "../pages/React/PageRenderHooks"
 import { PageUseMemo } from "../pages/React/PageUseMemo"
 import { PageZustand } from "../pages/React/PageZustand"
 import { PageZustandStore } from "../pages/React/PageZustandStore"
-import { PageEntries } from "../pages/TypeScript/PageEntries"
-import { PageIntersectionObserver } from "../pages/webAPI/PageIntersectionObserver"
-import { PageIntersectionObserverHide } from "../pages/webAPI/PageIntersectionObserverHide"
 
 type MenuGroup = { [key: string]: Menu[] }
 
@@ -68,6 +69,11 @@ export const menuGroup: MenuGroup = {
       name: "zustand",
       path: "/zustand",
       element: PageZustand,
+    },
+    {
+      name: "pdf",
+      path: "/pdf",
+      element: PagePDF,
     },
   ],
   WebAPI: [
