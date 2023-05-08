@@ -107,12 +107,13 @@ const style = StyleSheet.create({
   view: {
     textAlign: "left",
     position: "absolute",
-    top: "100px",
-    left: "35px",
+    top: "10px",
+    left: "10px",
     width: "300px",
     height: "300px",
+    padding: "8px",
     borderWidth: "0.1mm",
-    borderStyle: "solid",
+    //borderStyle: "solid",
   },
   title: { fontSize: "11pt", fontFamily: "Nasu-Bold" },
   subTitle: { fontSize: "8pt", fontFamily: "Nasu-Regular" },
@@ -148,7 +149,7 @@ const longText = `test 本文文字列、本文文字列、本文文字列、本
 const DocumentComponent = () => {
   return (
     <Document>
-      <Page size="A4" orientation="landscape" style={style.body}>
+      <Page size="A4" orientation="portrait" style={style.body}>
         <View style={style.view}>
           <Text style={style.title}>1行目タイトル</Text>
           <Text style={style.subTitle}>サブタイトル文字列やや長め</Text>
