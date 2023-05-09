@@ -61,12 +61,12 @@ export const menuGroup: MenuGroup = {
       element: PageRenderHooks,
     },
     {
-      name: "zustand Store",
+      name: "zustand(Store)",
       path: "/zustandStore",
       element: PageZustandStore,
     },
     {
-      name: "zustand",
+      name: "zustand(再描画)",
       path: "/zustand",
       element: PageZustand,
     },

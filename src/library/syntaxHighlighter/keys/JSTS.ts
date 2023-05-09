@@ -71,6 +71,7 @@ export const keysJSTS: KeyDef[] = [
       "Routes",
       "Route",
       "fallback",
+      "shallow",
     ],
   },
   {

@@ -5,10 +5,12 @@ import { useCount } from "../../../store/storeBasic"
 
 export function UseZustandOneCompo(): UseReturnType {
   const title = `コンポーネント処理(Oneコンポーネント)`
+  const subTitle = `同一コンポーネント内で呼び出した全変数とメソッドはお互いに再描画を誘引`
 
   const jsx = <ZustandOne />
   return {
     title,
+    subTitle,
     code,
     codeFold: true,
     options: [],

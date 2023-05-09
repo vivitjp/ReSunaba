@@ -1,17 +1,21 @@
+import { shallow } from "zustand/shallow"
+
 import { Column, Row } from "../../../common/styleDiv"
 import { Input } from "../../../common/styleInput"
 import { UseReturnType } from "../../../component/type/type"
-import { useCount3 } from "../../../store/storeBasic"
+import { usePerson1 } from "../../../store/storeBasic"
 
-export function UseZustandObject(): UseReturnType {
-  const title = `Object(分割代入)による取り出し`
-  const subTitle = `const { name, setName } = useCount()`
+export function UseZustandObjectShallow(): UseReturnType {
+  const title = `Object(分割代入)による取り出しでShallow比較 [★★]`
+  const subTitle = `const { name, setName } = usePerson(
+    (state) => ({ name: state.name, setName: state.setName }), shallow
+  )`
 
   const jsx = <ZustandObject />
   return {
     title,
-    code,
     subTitle,
+    code,
     codeFold: true,
     options: [],
     jsx,
@@ -29,7 +33,10 @@ const ZustandObject = () => {
 }
 
 const Name = () => {
-  const { name, setName } = useCount3()
+  const { name, setName } = usePerson1(
+    (state) => ({ name: state.name, setName: state.setName }),
+    shallow
+  )
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.currentTarget.value)
@@ -49,8 +56,8 @@ const Name = () => {
 }
 
 const Address = () => {
-  const address = useCount3((state) => state.address)
-  const setAddress = useCount3((state) => state.setAddress)
+  const address = usePerson1((state) => state.address)
+  const setAddress = usePerson1((state) => state.setAddress)
 
   const handleAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAddress(e.currentTarget.value)
@@ -69,7 +76,9 @@ const Address = () => {
   )
 }
 
-const code = `const ZustandObject = () => {
+const code = `import { shallow } from "zustand/shallow"
+ 
+const ZustandObject = () => {
   return (
     <>
       <Name />
@@ -79,7 +88,11 @@ const code = `const ZustandObject = () => {
 }
  
 const Name = () => {
-  const { name, setName } = useCount() //Object(分割代入)による取り出し
+  //Object(分割代入)による取り出し
+  const { name, setName } = usePerson(
+    (state) => ({ name: state.name, setName: state.setName }),
+    shallow // Shallowによる比較で再描画抑制
+  )
  
   return (
     <Row>
@@ -91,8 +104,9 @@ const Name = () => {
 }
  
 const Address = () => {
-  const address = useCount((state) => state.address)      //個別取り出し
-  const setAddress = useCount((state) => state.setAddress)//個別取り出し
+  //個別取り出し
+  const address = usePerson((state) => state.address)
+  const setAddress = usePerson((state) => state.setAddress)
  
   return (
     <Row>

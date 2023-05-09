@@ -1,4 +1,4 @@
-import { StateCreator, create } from "zustand"
+import { create } from "zustand"
 
 export interface CountState {
   count: number
@@ -37,27 +37,31 @@ export const useCount3 = create<CountState>()((set) => ({
 }))
 
 //-----------------------------------------
-// Slice Pattern
+// Person
 //-----------------------------------------
-export interface NameSlice {
-  name: String
+export interface Person {
+  name: string
   setName: (name: string) => void
-}
-const createNameSlice: StateCreator<NameSlice> = (set) => ({
-  name: "",
-  setName: (name) => set({ name }),
-})
-
-export interface AddressSlice {
-  address: String
+  address: string
   setAddress: (address: string) => void
 }
-const createAddressSlice: StateCreator<AddressSlice> = (set) => ({
+export const usePerson1 = create<Person>()((set) => ({
+  name: "",
+  setName: (name) => set(() => ({ name })),
   address: "",
-  setAddress: (address) => set({ address }),
-})
+  setAddress: (address) => set(() => ({ address })),
+}))
 
-export const useBoundStore = create<NameSlice & AddressSlice>()((...args) => ({
-  ...createNameSlice(...args),
-  ...createAddressSlice(...args),
+export const usePerson2 = create<Person>()((set) => ({
+  name: "",
+  setName: (name) => set(() => ({ name })),
+  address: "",
+  setAddress: (address) => set(() => ({ address })),
+}))
+
+export const usePerson3 = create<Person>()((set) => ({
+  name: "",
+  setName: (name) => set(() => ({ name })),
+  address: "",
+  setAddress: (address) => set(() => ({ address })),
 }))

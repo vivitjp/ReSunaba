@@ -125,11 +125,14 @@ const style = StyleSheet.create({
     // width: "300px", 作用せず
     fontSize: "7pt",
     fontFamily: "Nasu-Regular",
-    //whiteSpace: "wrap",
-    //hyphens: "none", //"none", "auto", "manual"
-    lineBreak: "normal", //"anywhere", "normal", "loose"
-    //textDecoration: "none",
-    //textOverflow:
+
+    //以下、使用に意味無し
+    // whiteSpace: "wrap",
+    // hyphens: "none", //"none", "auto", "manual"
+    // lineBreak: "normal", //"anywhere", "normal", "loose"
+    // textDecoration: "none",
+    // lineHeight: //使用不可！
+    // justifyContent: 動作せず -> textAlign を使用すること
   },
 })
 
@@ -142,6 +145,7 @@ Font.register({
   src: fontBold,
 })
 
+//改行時のハイフン消去
 Font.registerHyphenationCallback((word) =>
   Array.from(word).flatMap((char) => [char, ""])
 )

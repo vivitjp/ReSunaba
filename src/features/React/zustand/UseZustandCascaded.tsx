@@ -5,10 +5,12 @@ import { useCount2 } from "../../../store/storeBasic"
 
 export function UseZustandCascaded(): UseReturnType {
   const title = `コンポーネント分散処理`
+  const subTitle = `変数の取り出しを子コンポーネントに振り分けることで再描画を抑制`
 
   const jsx = <ZustandCascaded />
   return {
     title,
+    subTitle,
     code,
     codeFold: true,
     options: [],
