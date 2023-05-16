@@ -6,15 +6,12 @@ import { UseReturnType } from "../../../component/type/type"
 import { usePerson1 } from "../../../store/storeBasic"
 
 export function UseZustandMemoizing(): UseReturnType {
-  const title = `Zustand: Memo化`
-
-  const jsx = <ZustandObject />
   return {
-    title,
+    title: `Zustand: Memo化`,
     code,
     codeFold: true,
     options: [],
-    jsx,
+    jsx: <ZustandObject />,
     codeKeyType: "JSTS",
   }
 }

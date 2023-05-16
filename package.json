@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "jest --config ./jest.config.json",
     "test:watch": "npm run test -- --watch",
-    "barrels": "barrelsby -c barrelsby.json"
+    "lint": "eslint --fix --ext .jsx,.js,.tsx,.ts ."
   },
   "dependencies": {
     "@react-pdf/renderer": "^3.1.9",

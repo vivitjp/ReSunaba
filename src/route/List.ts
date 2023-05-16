@@ -10,6 +10,7 @@ import { PageRenderHooks } from "../pages/React/PageRenderHooks"
 import { PageUseMemo } from "../pages/React/PageUseMemo"
 import { PageZustand } from "../pages/React/PageZustand"
 import { PageZustandStore } from "../pages/React/PageZustandStore"
+import { PageZustandSubscribe } from "../pages/React/PageZustandSubscribe"
 
 type MenuGroup = { [key: string]: Menu[] }
 
@@ -69,6 +70,11 @@ export const menuGroup: MenuGroup = {
       name: "zustand(再描画)",
       path: "/zustand",
       element: PageZustand,
+    },
+    {
+      name: "Zustand(Subscribe)",
+      path: "/zustandSubscribe",
+      element: PageZustandSubscribe,
     },
     {
       name: "pdf",
