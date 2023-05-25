@@ -1,8 +1,8 @@
 import { Column } from "../../common/styleDiv"
 import { UseReturnType } from "../../component/type/type"
 import { FeaturePresenter } from "../../featureCommon"
-import { UseZustandPersistSession } from "../../features/React/zustandMiddleware/UseZustandPersistSession"
-import { UseZustandPersistJsonLocalStorage } from "../../features/React/zustandMiddleware/UseZustandPersistJsonLocalStorage"
+import { UseZustandPersistSession } from "../../features/React/zustandPersist/UseZustandPersistSession"
+import { UseZustandPersistJsonLocalStorage } from "../../features/React/zustandPersist/UseZustandPersistJsonLocalStorage"
 
 const codes: (() => UseReturnType)[] = [
   UseZustandPersistSession,
