@@ -11,6 +11,7 @@ import { PageUseMemo } from "../pages/React/PageUseMemo"
 import { PageZustand } from "../pages/React/PageZustand"
 import { PageZustandStore } from "../pages/React/PageZustandStore"
 import { PageZustandSubscribe } from "../pages/React/PageZustandSubscribe"
+import { PageZustandPersist } from "../pages/React/PageZustandPersist"
 
 type MenuGroup = { [key: string]: Menu[] }
 
@@ -62,12 +63,12 @@ export const menuGroup: MenuGroup = {
       element: PageRenderHooks,
     },
     {
-      name: "zustand(Store)",
+      name: "Zustand(Store)",
       path: "/zustandStore",
       element: PageZustandStore,
     },
     {
-      name: "zustand(再描画)",
+      name: "Zustand(再描画)",
       path: "/zustand",
       element: PageZustand,
     },
@@ -77,7 +78,13 @@ export const menuGroup: MenuGroup = {
       element: PageZustandSubscribe,
     },
     {
-      name: "pdf",
+      name: "Zustand(Persist)",
+      path: "/zustandPersist",
+      element: PageZustandPersist,
+    },
+
+    {
+      name: "PDF",
       path: "/pdf",
       element: PagePDF,
     },

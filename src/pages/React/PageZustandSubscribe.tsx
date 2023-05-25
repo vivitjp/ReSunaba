@@ -2,11 +2,13 @@ import { Column } from "../../common/styleDiv"
 import { UseReturnType } from "../../component/type/type"
 import { FeaturePresenter } from "../../featureCommon"
 import { UseZustandSubscribe } from "../../features/React/zustandSubscribe/UseZustandSubscribe"
-import { UseZustandSubscribeByOther } from "../../features/React/zustandSubscribe/UseZustandSubscribeByOther"
+import { UseZustandSubscribeComponent } from "../../features/React/zustandSubscribe/UseZustandSubscribeCompo"
+import { UseZustandSubscribeCompoTransient } from "../../features/React/zustandSubscribe/UseZustandSubscribeCompoTransient"
 
 const codes: (() => UseReturnType)[] = [
   UseZustandSubscribe,
-  UseZustandSubscribeByOther,
+  UseZustandSubscribeComponent,
+  UseZustandSubscribeCompoTransient,
 ]
 
 export const PageZustandSubscribe = () => {

@@ -2,17 +2,12 @@ import { UseReturnType } from "../../../component/type/type"
 import { create } from "zustand"
 import { subscribeWithSelector } from "zustand/middleware"
 import { shallow } from "zustand/shallow"
-import { Column, Row } from "../../../common/styleDiv"
-import { Input } from "../../../common/styleInput"
 
 // Store create 時に subscribeWithSelector で巻く
 // 同レベルでの更新にのみ反応(子コンポーネント内部変化には反応せず)
 export const useSubscribeStore = create(
   subscribeWithSelector(() => ({ name: "John", age: 19, active: true }))
 )
-
-// ■ 取得
-const nameOutside = useSubscribeStore.getState().name
 
 // ■ subscribeメソッド
 // subscribe: <(string | boolean)[]>(
@@ -62,18 +57,17 @@ unsubscribe4()
 
 export function UseZustandSubscribe(): UseReturnType {
   return {
-    title: `zustand subscribe(Non Reactive)`,
+    title: `Middleware: zustand subscribe`,
+    subTitle:
+      "通常のストア作成時に subscribeWithSelector で巻くことで、Store の変更を追跡できる、spyOn のような挙動",
     code,
-    codeFold: true,
+    codeFold: false,
     options: [],
-    jsx: <ZustandNonReactive />,
     codeKeyType: "JSTS",
   }
 }
 
-const code = `// ■ ローカルに Store生成
-//Store create 時に subscribeWithSelector で巻く
-//subscribe(): 同レベルでの更新にのみ反応(子コンポーネント内部変化には反応せず)
+const code = `//subscribe(): 同レベル(コンポーネント)での更新にのみ反応
 const useSubscribeStore = create(
   subscribeWithSelector(() => ({ name: "John", age: 19, active: true }))
 )
@@ -89,7 +83,7 @@ subscribe: <(string | boolean)[]>(
   options?: { ... } | undefined   //比較関数等{ equalityFn: shallow }
 ) => () => void
  
-//■ 取得
+// ■ 取得
 const nameOutside = useSubscribeStore.getState().name
  
 // ■ 更新時イベント(全体) (vanilla.mjs) Object 全体を出力
@@ -107,7 +101,7 @@ const unsubscribe3 = useSubscribeStore.subscribe(
   console.log,            //新旧: 配列
   { equalityFn: shallow } //配列出力なので再描画を抑制
 )
-
+ 
 // ■ 更新時イベント(引数付き個別出力) (UseZustandNonReactive.tsx)
 const unsubscribe4 = useSubscribeStore.subscribe(
   (state) => state.name,  //新旧: 名前のみ
@@ -116,52 +110,10 @@ const unsubscribe4 = useSubscribeStore.subscribe(
  
 // ■ 更新+イベント => subscribe はこの更新に反応する
 useSubscribeStore.setState({ name: "Karen" })
-
+ 
 // ■ Unsubscribe listeners(メモリリークを防止)
 unsubscribe1()
 unsubscribe2()
 unsubscribe3()
 unsubscribe4()
 `
-
-const ZustandNonReactive = () => {
-  return (
-    <Row gap="10px">
-      <ComponentInside />
-      <ComponentOutside />
-    </Row>
-  )
-}
-
-const ComponentInside = () => {
-  //通常のStoreHooksとしても使用可能(注意：この場合はリアクティブ!!)
-  const nameInside = useSubscribeStore((state) => state.name)
-
-  return (
-    <Column gap="10px" border="1px solid #aaa">
-      <Row fontSize="18px" padding="5px" gap="20px">
-        <Row fontSize="24px" padding="5px">
-          {nameInside} {/* この値はリアクティブ */}
-        </Row>
-      </Row>
-    </Column>
-  )
-}
-
-const ComponentOutside = () => {
-  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //値の上書きは可能
-    useSubscribeStore.setState({ name: e.currentTarget.value })
-  }
-  // nameOutside を変更しても、出力は変わらず
-  return (
-    <Column gap="10px" border="1px solid #aaa">
-      <Row fontSize="18px" padding="5px" gap="20px">
-        <Input onChange={handleName} value={nameOutside} width={"160px"} />
-        <Row fontSize="24px" padding="5px">
-          {nameOutside} {/* この値は不変(NonReactive)  */}
-        </Row>
-      </Row>
-    </Column>
-  )
-}

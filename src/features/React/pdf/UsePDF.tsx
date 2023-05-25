@@ -14,6 +14,8 @@ import {
 import fontRegular from "../../../assets/font/Nasu-Regular.ttf" //ttfファイル参照
 import fontBold from "../../../assets/font/Nasu-Bold.ttf" //ttfファイル参照
 
+import { sample } from "./sample"
+
 /*
 ■ インストール
 yarn add @react-pdf/renderer
@@ -77,8 +79,7 @@ Font.registerHyphenationCallback((word) =>
 )
  
 const fileName = "sample1.pdf"
-const longText = \`test 本文文字列、本文文字列、本文文字列、本文文字列、本文文字列、本文文字列本文文字列、本文文字列本文文字列、本文文字列本文文字列、本文文字列
-本文文字列、本文文字列、本文文字列本文文字列、本文文字列、本文文字列\`
+const sampleText = sample //from text file
  
 const DocumentComponent = () => {
   return (
@@ -87,7 +88,7 @@ const DocumentComponent = () => {
         <View style={style.view}>
           <Text style={style.title}>1行目タイトル</Text>
           <Text style={style.subTitle}>サブタイトル文字列やや長め</Text>
-          <Text style={style.bodyText}>{longText}</Text>
+          <Text style={style.bodyText}>{sampleText}</Text>
         </View>
       </Page>
     </Document>
@@ -151,8 +152,6 @@ Font.registerHyphenationCallback((word) =>
 )
 
 const fileName = "sample1.pdf"
-const longText = `test 本文文字列、本文文字列、本文文字列、本文文字列、本文文字列、本文文字列本文文字列、本文文字列本文文字列、本文文字列本文文字列、本文文字列
-本文文字列、本文文字列、本文文字列本文文字列、本文文字列、本文文字列`
 
 const DocumentComponent = () => {
   return (
@@ -161,7 +160,7 @@ const DocumentComponent = () => {
         <View style={style.view}>
           <Text style={style.title}>1行目タイトル</Text>
           <Text style={style.subTitle}>サブタイトル文字列やや長め</Text>
-          <Text style={style.bodyText}>{longText}</Text>
+          <Text style={style.bodyText}>{sample}</Text>
         </View>
       </Page>
     </Document>
