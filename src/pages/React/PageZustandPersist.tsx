@@ -2,11 +2,15 @@ import { Column } from "../../common/styleDiv"
 import { UseReturnType } from "../../component/type/type"
 import { FeaturePresenter } from "../../featureCommon"
 import { UseZustandPersistSession } from "../../features/React/zustandPersist/UseZustandPersistSession"
-import { UseZustandPersistJsonLocalStorage } from "../../features/React/zustandPersist/UseZustandPersistJsonLocalStorage"
+import { UseZustandPersistLocalStorage } from "../../features/React/zustandPersist/UseZustandPersistLocalStorage"
+import { UseZustandPersistIndexDB } from "../../features/React/zustandPersist/UseZustandPersistIndexDB"
+import { UseZustandPersistLocalStoragePartialize } from "../../features/React/zustandPersist/UseZustandPersistLocalStoragePartialize"
 
 const codes: (() => UseReturnType)[] = [
   UseZustandPersistSession,
-  UseZustandPersistJsonLocalStorage,
+  UseZustandPersistLocalStorage,
+  UseZustandPersistIndexDB,
+  UseZustandPersistLocalStoragePartialize,
 ]
 
 export const PageZustandPersist = () => {

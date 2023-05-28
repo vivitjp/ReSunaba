@@ -3,12 +3,12 @@ import { shallow } from "zustand/shallow"
 import { Column, Row } from "../../../common/styleDiv"
 import { Input } from "../../../common/styleInput"
 import { UseReturnType } from "../../../component/type/type"
-import { usePersistSession } from "../../../store/usePersistSession"
+import { usePersistLocalStorageStore } from "../../../store/usePersistLocalStorageStore"
 import { useRef } from "react"
 
-export function UseZustandPersistSession(): UseReturnType {
+export function UseZustandPersistLocalStorage(): UseReturnType {
   return {
-    title: `Zustand: Persist(Session)`,
+    title: `Zustand: Persist(Json for Local Storage)`,
     code,
     codeFold: true,
     options: [],
@@ -20,15 +20,15 @@ export function UseZustandPersistSession(): UseReturnType {
 const ZustandObject = () => {
   return (
     <Column gap="10px">
-      <NameSession />
+      <NameLocalStorage />
     </Column>
   )
 }
 
-const NameSession = () => {
+const NameLocalStorage = () => {
   const nameRef = useRef<HTMLInputElement>(null)
 
-  const Person = usePersistSession(
+  const Person = usePersistLocalStorageStore(
     (state) => ({ name: state.name, setName: state.setName }),
     shallow
   )
@@ -53,23 +53,23 @@ const NameSession = () => {
   )
 }
 
-const code = `const usePersistSession = create<PersistPerson>()(
+const code = `const usePersistLocalStorageStore = create<PersistPerson>()(
   persist(
     (set) => ({
       name: "John",
       setName: (name) => set({ name }),
     }),
     {
-      name: "persist-session-person",   //ユニークな判別名
-      getStorage: () => sessionStorage, //<-- getStorage:Deprecated
+      name: "persist-localStorage-person",   //ユニークな判別名
+      storage: createJSONStorage(() => localStorage),
     }
   )
 )
  
-const NameSession = () => {
+const NameLocalStorage = () => {
   const nameRef = useRef<HTMLInputElement>(null)
  
-  const Person = usePersistSession(
+  const Person = usePersistLocalStorageStore(
     (state) => ({ name: state.name, setName: state.setName }),
     shallow
   )
@@ -88,6 +88,5 @@ const NameSession = () => {
   )
 }
  
-//■ Browser Session
-persist-session-person:"{"state":{"name":"John","age":35,"active":false},"version":0}"
-`
+//■ Browser Local Storage
+persist-localStorage-person:"{"state":{"name":"John","age":35,"active":false},"version":0}"`

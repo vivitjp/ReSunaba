@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { createJSONStorage, persist } from "zustand/middleware"
+import { persist } from "zustand/middleware"
 
 type PersistPerson = {
   name: string
@@ -10,7 +10,7 @@ type PersistPerson = {
   setActive: (flag: boolean) => void
 }
 
-export const usePersistJsonLocalStorageStore = create<PersistPerson>()(
+export const usePersistSession = create<PersistPerson>()(
   persist(
     (set) => ({
       name: "John",
@@ -21,12 +21,8 @@ export const usePersistJsonLocalStorageStore = create<PersistPerson>()(
       setActive: (flag) => set({ active: flag }),
     }),
     {
-      name: "persist-json-localStorage-person", //ユニークな判別名
-      storage: createJSONStorage(() => localStorage),
+      name: "persist-session-person", //ユニークな判別名
+      getStorage: () => sessionStorage, //<-- Deprecated
     }
-    // partialize: (state) =>
-    // Object.fromEntries(
-    //   Object.entries(state).filter(([key]) => !['foo'].includes(key))
-    // ),
   )
 )

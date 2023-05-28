@@ -3,12 +3,13 @@ import { shallow } from "zustand/shallow"
 import { Column, Row } from "../../../common/styleDiv"
 import { Input } from "../../../common/styleInput"
 import { UseReturnType } from "../../../component/type/type"
-import { usePersistSession } from "../../../store/usePersistSession"
+import { usePersistLocalStoragePartializeStore } from "../../../store/usePersistLocalStorageStore"
 import { useRef } from "react"
 
-export function UseZustandPersistSession(): UseReturnType {
+export function UseZustandPersistLocalStoragePartialize(): UseReturnType {
   return {
-    title: `Zustand: Persist(Session)`,
+    title: `Zustand: Persist(Json for Local Storage, Partialize)`,
+    subTitle: "age 以外を保存する Store",
     code,
     codeFold: true,
     options: [],
@@ -20,15 +21,15 @@ export function UseZustandPersistSession(): UseReturnType {
 const ZustandObject = () => {
   return (
     <Column gap="10px">
-      <NameSession />
+      <NameLocalStorage />
     </Column>
   )
 }
 
-const NameSession = () => {
+const NameLocalStorage = () => {
   const nameRef = useRef<HTMLInputElement>(null)
 
-  const Person = usePersistSession(
+  const Person = usePersistLocalStoragePartializeStore(
     (state) => ({ name: state.name, setName: state.setName }),
     shallow
   )
@@ -53,23 +54,34 @@ const NameSession = () => {
   )
 }
 
-const code = `const usePersistSession = create<PersistPerson>()(
+const code = `const UseZustandPersistLocalStoragePartialize = create<PersistPerson>()(
   persist(
     (set) => ({
       name: "John",
+      age: 35,
+      active: false,
       setName: (name) => set({ name }),
+      setAge: (age) => set({ age }),
+      setActive: (flag) => set({ active: flag }),
     }),
     {
-      name: "persist-session-person",   //ユニークな判別名
-      getStorage: () => sessionStorage, //<-- getStorage:Deprecated
+      name: "persist-localStorage-partialize-person",   //ユニークな判別名
+      storage: createJSONStorage(() => localStorage),
+      //age以外を保存
+      partialize: (state) =>
+        Object.fromEntries(
+          Object.entries(state).filter(([key]) => !["age"].includes(key))
+        ),
+      //ageのみを保存
+      // partialize: (state) => ({ age: state.age }),
     }
   )
 )
  
-const NameSession = () => {
+const NameLocalStorage = () => {
   const nameRef = useRef<HTMLInputElement>(null)
  
-  const Person = usePersistSession(
+  const Person = usePersistLocalStorageStore(
     (state) => ({ name: state.name, setName: state.setName }),
     shallow
   )
@@ -88,6 +100,5 @@ const NameSession = () => {
   )
 }
  
-//■ Browser Session
-persist-session-person:"{"state":{"name":"John","age":35,"active":false},"version":0}"
-`
+//■ Browser Local Storage(ageなし)
+persist-localStorage-partialize-person:"{"state":{"name":"ZYX","active":false},"version":0}"`
