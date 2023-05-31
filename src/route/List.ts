@@ -13,6 +13,7 @@ import { PageZustandStore } from "../pages/React/PageZustandStore"
 import { PageZustandSubscribe } from "../pages/React/PageZustandSubscribe"
 import { PageZustandPersist } from "../pages/React/PageZustandPersist"
 import { PageZustandMapSet } from "../pages/React/PageZustandMapSet"
+import { PageZustandDevTools } from "../pages/React/PageZustandDevTools"
 
 type MenuGroup = { [key: string]: Menu[] }
 
@@ -88,7 +89,11 @@ export const menuGroup: MenuGroup = {
       path: "/zustandPersist",
       element: PageZustandPersist,
     },
-
+    {
+      name: "Zustand(DevTools)",
+      path: "/zustandDevTools",
+      element: PageZustandDevTools,
+    },
     {
       name: "PDF",
       path: "/pdf",
