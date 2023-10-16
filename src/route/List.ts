@@ -14,6 +14,7 @@ import { PageZustandSubscribe } from "../pages/React/PageZustandSubscribe"
 import { PageZustandPersist } from "../pages/React/PageZustandPersist"
 import { PageZustandMapSet } from "../pages/React/PageZustandMapSet"
 import { PageZustandDevTools } from "../pages/React/PageZustandDevTools"
+import { PageTSClass } from "../pages/TypeScript/PageTSClass"
 
 type MenuGroup = { [key: string]: Menu[] }
 
@@ -41,6 +42,11 @@ export const menuGroup: MenuGroup = {
       name: "Object.entries",
       path: "/objectEntries",
       element: PageEntries,
+    },
+    {
+      name: "Class",
+      path: "/class",
+      element: PageTSClass,
     },
   ],
   React: [

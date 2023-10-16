@@ -5,37 +5,26 @@ import { Table } from "../../../component/Table"
 import { Data, data } from "./baseData"
 
 export function UseObjectEntries(): UseReturnType {
-  const title = `TypeScript: Object.entries()`
-  const subTitle = ``
-
-  const jsx = <ParentCompo />
-
   return {
-    title,
-    subTitle,
+    title: `TypeScript: Object.entries()`,
+    subTitle: "",
     code,
     options: [],
-    jsx,
+    jsx: <ParentCompo />,
     codeKeyType: "JSTS",
   }
 }
-const code = `type GetValues<T> = T extends { [K in keyof T]: infer U } ? U : never
-type Values = GetValues<Data>
-type Entries = [keyof Data, Values]
-
-const entries = (Object.entries(data) as Entries[]).map((item) => ({
-  ...item,
-}))
-`
 
 type GetValues<T> = T extends { [K in keyof T]: infer U } ? U : never
 type Values = GetValues<Data>
 type Entries = [keyof Data, Values]
 
 const ParentCompo = () => {
-  const entries = (Object.entries(data) as Entries[]).map((item) => ({
-    ...item,
-  }))
+  const entries = (Object.entries(data) as Entries[]).map(
+    (item): Entries => ({
+      ...item,
+    })
+  )
 
   const displayDataArray = useCallback((item: Entries) => {
     return (
@@ -55,3 +44,12 @@ const ParentCompo = () => {
     </Row>
   )
 }
+
+const code = `type GetValues<T> = T extends { [K in keyof T]: infer U } ? U : never
+type Values = GetValues<Data>
+type Entries = [keyof Data, Values]
+
+const entries = (Object.entries(data) as Entries[]).map((item) => ({
+  ...item,
+}))
+`

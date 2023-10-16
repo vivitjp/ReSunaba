@@ -11,6 +11,7 @@ import {
   Document,
   StyleSheet,
 } from "@react-pdf/renderer"
+
 import fontRegular from "../../../assets/font/Nasu-Regular.ttf" //ttfファイル参照
 import fontBold from "../../../assets/font/Nasu-Bold.ttf" //ttfファイル参照
 
