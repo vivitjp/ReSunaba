@@ -15,6 +15,7 @@ import { PageZustandPersist } from "../pages/React/PageZustandPersist"
 import { PageZustandMapSet } from "../pages/React/PageZustandMapSet"
 import { PageZustandDevTools } from "../pages/React/PageZustandDevTools"
 import { PageTSClass } from "../pages/TypeScript/PageTSClass"
+import { PagePromise } from "../pages/TypeScript/PagePromise"
 
 type MenuGroup = { [key: string]: Menu[] }
 
@@ -47,6 +48,11 @@ export const menuGroup: MenuGroup = {
       name: "Class",
       path: "/class",
       element: PageTSClass,
+    },
+    {
+      name: "Promise",
+      path: "/promise",
+      element: PagePromise,
     },
   ],
   React: [
