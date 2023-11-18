@@ -16,6 +16,8 @@ import { PageZustandMapSet } from "../pages/React/PageZustandMapSet"
 import { PageZustandDevTools } from "../pages/React/PageZustandDevTools"
 import { PageTSClass } from "../pages/TypeScript/PageTSClass"
 import { PagePromise } from "../pages/TypeScript/PagePromise"
+import { PageVariables1 } from "../pages/React/PageVariables1"
+import { PageVariables2 } from "../pages/React/PageVariables2"
 
 type MenuGroup = { [key: string]: Menu[] }
 
@@ -110,6 +112,16 @@ export const menuGroup: MenuGroup = {
       name: "PDF",
       path: "/pdf",
       element: PagePDF,
+    },
+    {
+      name: "変数Static1",
+      path: "/staticVariables1",
+      element: PageVariables1,
+    },
+    {
+      name: "変数Static2",
+      path: "/staticVariables2",
+      element: PageVariables2,
     },
   ],
   WebAPI: [
